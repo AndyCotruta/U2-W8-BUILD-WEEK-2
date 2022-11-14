@@ -1,0 +1,78 @@
+body {
+  height: 100%;
+}
+
+h1 {
+  color: brown;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.left-nav {
+  width: 20%;
+  height: 90vh;
+  background-color: #121212;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #847e82;
+}
+
+.left-nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.left-nav a:hover {
+  color: white;
+}
+
+.left-nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+.left-nav li {
+  list-style-type: none;
+}
+
+.nav-pages li,
+.nav-extra li {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-pages li:hover,
+.nav-extra li:hover {
+  transform: scale(1.035);
+}
+
+.nav-playlist li {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.logo img {
+  width: 60%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.selected {
+  background-color: #282828;
+  color: white;
+  border-radius: 5px;
+}
+
+.center-section {
+  width: 80%;
+  height: 90vh;
+  background-color: bisque;
+}
+
+.now-playing {
+  height: 10vh;
+  background-color: brown;
+}
