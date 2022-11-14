@@ -2,9 +2,9 @@ body {
   background-color: #0e0e0e;
 }
 .scroll-bar {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 800px;
+  overflow: auto;
+
+  height: 90vh;
   background: linear-gradient(#5a1212, #0a0a0a);
 }
 .nav-bar {
