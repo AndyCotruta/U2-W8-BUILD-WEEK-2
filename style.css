@@ -1,3 +1,4 @@
+
 :root{
     --padding: 10px 20px;
     --radius: 10px;
@@ -11,8 +12,8 @@
 }
 body{
     display: flex;
-    min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0e0e0e;
 }
 .spotify_main{
     position: relative;
@@ -114,7 +115,6 @@ body{
 }
 
 .sdf{
-        /*  */
 width: 100%;
 display: flex;
 flex-flow: inherit;
@@ -221,4 +221,342 @@ margin-bottom: 20px;
 }
 .card_podcast{
     width: 60px;
+    }
+
+
+.scroll-bar {
+  overflow: auto;
+
+  height: 90vh;
+  background: linear-gradient(#5a1212, #0a0a0a);
+}
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btns-prev-next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-name-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #000000;
+  width: 120px;
+  height: 30px;
+  padding: 0.4em;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.user-name-text {
+  font-size: 0.7rem;
+}
+
+.btn-prev,
+.btn-next {
+  cursor: pointer;
+  margin-inline: 0.3em;
+}
+
+.img-btn {
+  height: 22px;
+}
+.avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+
+.icons-after-banner {
+  font-size: 30px;
+}
+.green-player-btn {
+  width: 50px;
+  height: 50px;
+  color: white;
+  background-color: green;
+  border-radius: 50%;
+}
+
+.heart,
+.dots {
+  color: white;
+}
+
+.info-list-paragraph {
+  margin: 0;
+}
+
+/*li {
+  list-style: none;
+  font-size: 0.9rem;
+}*/
+
+/* SCROLLBAR STYLES*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(220, 220, 220, 0.5);
+}
+
+.background {
+  background-image: url(https://www.ilikeyouroldstuff.com/sites/g/files/g2000009801/files/inline-images/green-day-1994.jpg);
+  height: 20rem;
+  background-size: cover;
+  background-position-y: 9%;
+}
+
+.artist-info > p {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.banner-artist {
+  height: 16rem;
+}
+
+.title-artist {
+  font-size: 5rem;
+}
+
+.verified-icon {
+  color: rgb(11, 99, 230);
+}
+
+.follow {
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid white;
+  padding: 8px;
+  height: 100%;
+}
+
+h1 {
+  color: brown;
+}
+
+.left-nav {
+  width: 15vw;
+  height: 90vh;
+  background-color: #121212;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #847e82;
+  display: flex;
+  flex-direction: column;
+}
+
+.left-nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.left-nav a:hover {
+  color: white;
+}
+
+.left-nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+.left-nav li {
+  list-style-type: none;
+}
+
+.nav-pages li,
+.nav-extra li {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-pages li:hover,
+.nav-extra li:hover {
+  transform: scale(1.035);
+}
+
+.nav-playlist li {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.logo img {
+  width: 60%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.selected {
+  background-color: #282828;
+  color: white;
+  border-radius: 5px;
+}
+
+.center-section {
+  width: 85%;
+  height: 90vh;
+  background-color: bisque;
+}
+
+.now-playing {
+  height: 10vh;
+  background-color: #181818;
+  color: #847e82;
+  position: relative;
+}
+
+.mini-song-album img {
+  height: 50px;
+  border-radius: 3px;
+}
+
+.song-info p {
+  margin: 0;
+}
+
+.song-title {
+  color: white;
+}
+
+.add-to-favorites,
+.change-display {
+  transition: transform 0.2s ease-in-out;
+}
+
+.add-to-favorites:hover,
+.change-display:hover {
+  transform: scale(1.1);
+  color: white;
+  cursor: pointer;
+}
+
+.song-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translate(-50%, 0);
+}
+
+.shuffle-button,
+.skip-left-button,
+.skip-right-button,
+.repeat-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.shuffle-button:hover,
+.skip-left-button:hover,
+.skip-right-button:hover,
+.repeat-button:hover {
+  transform: scale(1.1);
+  color: white;
+  cursor: pointer;
+}
+
+.play-button {
+  border-radius: 50%;
+  color: white;
+  transition: transform 0.2s ease-in-out;
+}
+
+.play-button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.progress {
+  height: 5px;
+  width: 450px;
+  background-color: #847e82;
+  position: relative;
+}
+
+.progress-white {
+  height: 5px;
+  width: 50px;
+  background-color: white;
+  border-radius: 5px;
+  position: absolute;
+  transform: translateX(47px);
+}
+
+.song-duration {
+  transition: transform 0.2s ease-in-out;
+}
+
+.song-duration:hover {
+  cursor: pointer;
+  transform: scale(1.035);
+}
+
+.playlist-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.playlist-button:hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.2);
+}
+
+.pc-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.pc-button:hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.2);
+}
+
+.volume-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.volume-button:hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.2);
+}
+
+.volume-control {
+  transition: transform 0.2s ease-in-out;
+}
+
+.volume-control:hover {
+  cursor: pointer;
+  transform: scale(1.035);
+}
+
+.volume-level {
+  height: 5px;
+  width: 100px;
+  background-color: #847e82;
+  border-radius: 5px;
+  position: relative;
+}
+
+.volume-level-white {
+  height: 5px;
+  width: 50px;
+  background-color: white;
+  border-radius: 5px;
+  position: absolute;
+  transform: translateX(34px);
+  transform: translateY(-5px);
+}
+
+.mr-45 {
+  margin-right: 2rem;
 }
