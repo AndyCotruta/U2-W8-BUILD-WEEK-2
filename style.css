@@ -42,3 +42,26 @@ body {
 .heart {
   color: white;
 }
+
+.info-list-paragraph {
+  margin: 0;
+}
+
+li {
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.scroll-bar {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 800px;
+}
+/* SCROLLBAR STYLES*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(220, 220, 220, 0.3);
+}
