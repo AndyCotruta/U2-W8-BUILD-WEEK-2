@@ -292,12 +292,13 @@ body {
 
 .info-list-paragraph {
   margin: 0;
+  font-size: 0.8em;
 }
 
-/*li {
+.track-list {
   list-style: none;
-  font-size: 0.9rem;
-}*/
+  height: 3.5rem;
+}
 
 /* SCROLLBAR STYLES*/
 ::-webkit-scrollbar {
@@ -337,10 +338,6 @@ body {
   border: 1px solid white;
   padding: 8px;
   height: 100%;
-}
-
-h1 {
-  color: brown;
 }
 
 .left-nav {
