@@ -12,7 +12,7 @@ h1 {
 
 .left-nav {
   width: 20%;
-  height: 85vh;
+  height: 90vh;
   background-color: #121212;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -68,14 +68,15 @@ h1 {
 
 .center-section {
   width: 80%;
-  height: 85vh;
+  height: 90vh;
   background-color: bisque;
 }
 
 .now-playing {
-  height: 15vh;
+  height: 10vh;
   background-color: #181818;
   color: #847e82;
+  position: relative;
 }
 
 .mini-song-album img {
@@ -89,4 +90,139 @@ h1 {
 
 .song-title {
   color: white;
+}
+
+.add-to-favorites,
+.change-display {
+  transition: transform 0.2s ease-in-out;
+}
+
+.add-to-favorites:hover,
+.change-display:hover {
+  transform: scale(1.1);
+  color: white;
+  cursor: pointer;
+}
+
+.song-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translate(-50%, 0);
+}
+
+.shuffle-button,
+.skip-left-button,
+.skip-right-button,
+.repeat-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.shuffle-button:hover,
+.skip-left-button:hover,
+.skip-right-button:hover,
+.repeat-button:hover {
+  transform: scale(1.1);
+  color: white;
+  cursor: pointer;
+}
+
+.play-button {
+  border-radius: 50%;
+  color: white;
+  transition: transform 0.2s ease-in-out;
+}
+
+.play-button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.progress {
+  height: 5px;
+  width: 450px;
+  background-color: #847e82;
+  position: relative;
+}
+
+.progress-white {
+  height: 5px;
+  width: 50px;
+  background-color: white;
+  border-radius: 5px;
+  position: absolute;
+  transform: translateX(47px);
+}
+
+.song-duration {
+  transition: transform 0.2s ease-in-out;
+}
+
+.song-duration:hover {
+  cursor: pointer;
+  transform: scale(1.035);
+}
+
+.playlist-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.playlist-button:hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.2);
+}
+
+.pc-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.pc-button:hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.2);
+}
+
+.volume-button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.volume-button:hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.2);
+}
+
+.volume-control {
+  transition: transform 0.2s ease-in-out;
+}
+
+.volume-control:hover {
+  cursor: pointer;
+  transform: scale(1.035);
+}
+
+.volume-level {
+  height: 5px;
+  width: 100px;
+  background-color: #847e82;
+  border-radius: 5px;
+  position: relative;
+}
+
+.volume-level-white {
+  height: 5px;
+  width: 50px;
+  background-color: white;
+  border-radius: 5px;
+  position: absolute;
+  transform: translateX(34px);
+  transform: translateY(-5px);
+}
+
+.mr-45 {
+  margin-right: 2rem;
 }
