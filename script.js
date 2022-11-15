@@ -24,7 +24,9 @@ const fetchAndCreateGoodMorning = async () => {
     const goodMorningRow = document.querySelector(".good-morning");
     goodMorningRow.innerHTML += `
     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
-    <div class="good-morning-cards card mb-3">
+    <div class="good-morning-cards card mb-3" onclick=goToAlbum('${String(
+      dataArray[i].album.id
+    )}')>
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src=${dataArray[i].album.cover} alt="...">
@@ -52,7 +54,9 @@ const fetchAndCreateRecentlyPlayed = async () => {
     const recentlyPlayedRow = document.querySelector(".recently-played");
     recentlyPlayedRow.innerHTML += `
     <div class="col-sm-6 col-md-4 col-xl-2">
-    <div class="recently-played-cards card mb-3">
+    <div class="recently-played-cards card mb-3" onclick=goToAlbum('${String(
+      dataArray[i].album.id
+    )}')>
   <img src=${dataArray[i].album.cover} class="card-img-top" alt="...">
   <div class="recently-played-card-body card-body">
     <p class="card-text">${dataArray[i].album.title}</p>
@@ -74,7 +78,9 @@ const fetchAndCreateShowsToTry = async () => {
     const showsToTryRow = document.querySelector(".shows-to-try");
     showsToTryRow.innerHTML += `
     <div class="col-sm-6 col-md-4 col-xl-2">
-    <div class="recently-played-cards card mb-3">
+    <div class="recently-played-cards card mb-3" onclick=goToAlbum('${String(
+      dataArray[i].album.id
+    )}')>
   <img src=${dataArray[i].album.cover} class="card-img-top" alt="...">
   <div class="recently-played-card-body card-body">
     <p class="card-text">${dataArray[i].album.title}</p>
@@ -83,4 +89,9 @@ const fetchAndCreateShowsToTry = async () => {
     </div>
     `;
   }
+};
+
+const goToAlbum = (albumId) => {
+  console.log(`This is the album id ${albumId} `);
+  window.location.assign(`./album.html?albumId=${albumId}`);
 };
