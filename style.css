@@ -1,228 +1,40 @@
-:root {
-  --padding: 10px 20px;
-  --radius: 10px;
-  --fondo: #181818;
-  --efecto: all 0.5s;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-/* body{
-    display: flex;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0e0e0e;
-} */
-.spotify_main {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-.spotify_main aside {
-  width: 20%;
-  height: 100vh;
-  background-color: #000000;
-  padding: var(--padding);
-}
-.spotify_main aside .menu {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.spotify_main section {
-  height: 100vh;
-  color: #ffffff;
-  background-color: var(--fondo);
-  overflow-y: scroll;
-  padding-bottom: 5rem;
-}
-.spotify_main section::-webkit-scrollbar {
-  -webkit-appearance: none;
-}
-.spotify_main section::-webkit-scrollbar:vertical {
-  width: 7px;
-}
-.spotify_main section::-webkit-scrollbar-thumb {
-  background-color: #797979;
-}
-.spotify_main section header {
+/* ___________________________________________________________________ */
+/* Style for homepage center section */
+.center-nav-bar {
+  height: 7vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  padding: var(--padding);
-  width: 80%;
-  background-color: #505053;
-  z-index: 2;
-}
-.spotify_main section header .botones_prev_next,
-.spotify_main section header .subsciption {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.spotify_main section header .botones_prev_next span {
-  cursor: pointer;
-}
-.spotify_main section header .botones_prev_next span.btn_prev {
-  margin-right: 1em;
 }
 
-.spotify_main section header .subsciption .users {
+.btns-prev-next {
+  align-self: start;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #000000;
-  width: auto;
-  padding: 0.4em 5px;
-  border-radius: 30px;
-  cursor: pointer;
-  z-index: 2;
-}
-.spotify_main section header .subsciption .users .user {
-  background-color: #333333;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.user,
-.account {
-  margin-right: 5px;
-}
-.spotify_main section .container_header,
-.spotify_main section .container_content {
-  padding: var(--padding);
-}
-.spotify_main section .container_header {
-  background: linear-gradient(#33080a, #181818);
-  width: 100%;
-  margin-top: 61px;
-}
-.spotify_main section .container_header .banner {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background-image: url(img/banner.png); */
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 10px;
+  align-items: start;
 }
 
-.sdf {
-  width: 100%;
-  display: flex;
-  flex-flow: inherit;
-  justify-content: center;
-  flex-grow: 1;
-  margin-bottom: 20px;
-}
-.spotify_main .container_content .tittle {
-  text-align: start;
-  width: 100%;
-  margin-bottom: 20px;
-}
-.spotify_main section .container_content .main_card,
-.spotify_main section .container_content .podcast {
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  flex-grow: 1;
-  margin-bottom: 20px;
-}
-.spotify_main section .container_content .main_card .cards {
-  transition: var(--efecto);
-  flex-basis: calc((100% / 3) - 20px);
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  background-color: #282828;
-  cursor: pointer;
-  border-radius: var(--radius);
-  margin: 10px;
-}
-.spotify_main section .container_content .main_card .cards .card_image {
-  width: 80px;
-  height: 80px;
-}
-.spotify_main section .container_content .main_card .cards .card_image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-top-left-radius: var(--radius);
-  border-bottom-left-radius: var(--radius);
-}
-.spotify_main section .container_content .main_card .cards .card_text {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  width: calc(100% - 80px);
-}
-.spotify_main section .container_content .main_card .cards .card_text img {
-  opacity: 0;
-}
-.spotify_main section .container_content .main_card .cards:hover {
-  background: linear-gradient(#666666, #474747);
-}
-.spotify_main section .container_content .main_card .cards:hover img {
-  opacity: 1;
-  transition: var(--efecto);
-}
-.spotify_main section .container_content .podcast .card_podcast {
-  transition: var(--efecto);
-  display: flex;
-  width: 100px;
-  /* height: ; */
-  justify-content: center;
-  flex-direction: column;
-  flex-basis: calc((100% / 4) - 20px);
-  margin: 10px;
-  background-color: #181818;
-  padding: 1em;
-  cursor: pointer;
-  border-radius: var(--radius);
-  background-color: #282828;
-  height: 500px;
+.btns-prev-next img {
+  padding-right: 1.5rem;
 }
 
-.spotify_main section .container_content .podcast .card_podcast:hover .play {
-  display: block;
+.px-35 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
-.play {
-  /* position: absolute; */
-  display: none;
-  top: 0%;
-  margin: 0 auto;
-  left: 0px;
-  right: 0px;
-  width: 50px;
-  height: 50px;
-  z-index: 100;
-  opacity: 0.9;
+
+.good-morning-cards {
+  height: 60px;
 }
-.spotify_main section .container_content .podcast .card_podcast img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.spotify_main section .container_content .podcast .card_podcast:hover img {
-  box-shadow: 5px 4px 10px hsl(0, 0%, 11%);
-}
-.spotify_main section .container_content .podcast .card_podcast h4 {
-  margin-top: 1em;
-}
-.card_podcast {
+.good-morning-cards img {
+  height: 60px;
   width: 60px;
 }
+
+.good-morning-cards h5 {
+  font-size: 10px;
+}
+
+/* ______________________________________________________________________ */
 
 .scroll-bar {
   overflow: auto;
@@ -230,17 +42,7 @@
   height: 90vh;
   background: linear-gradient(#5a1212, #0a0a0a);
 }
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.btns-prev-next {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .user-name-div {
   display: flex;
   justify-content: space-around;
@@ -260,7 +62,7 @@
 .btn-prev,
 .btn-next {
   cursor: pointer;
-  margin-inline: 0.3em;
+  padding-right: 1rem;
 }
 
 .img-btn {
@@ -299,12 +101,12 @@
 }*/
 
 /* SCROLLBAR STYLES*/
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
   background: rgb(220, 220, 220, 0.5);
-}
+} */
 
 .background {
   background-image: url(https://www.ilikeyouroldstuff.com/sites/g/files/g2000009801/files/inline-images/green-day-1994.jpg);
