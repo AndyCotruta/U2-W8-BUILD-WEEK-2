@@ -112,6 +112,13 @@ h5 {
 
 /* ..........................Search Page.......................... */
 
+.center-section-search {
+  width: 85%;
+  height: 90vh;
+  background-color: #121212;
+  overflow: auto;
+}
+
 .search-bar {
   background-color: white;
   color: black;
@@ -133,6 +140,36 @@ input:focus {
   outline: none;
 }
 
+input::placeholder {
+  font-size: 13px;
+}
+
+.browse-all-cards {
+  min-height: 170px;
+  aspect-ratio: 1/1;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  color: white;
+  padding: 10px;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.browse-all-img {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  transform: rotate(0.07turn) translateX(16%);
+  bottom: 0;
+  right: 0;
+}
 /* ............................................................... */
 
 .scroll-bar {
@@ -246,7 +283,7 @@ h1 {
 .left-nav {
   width: 15vw;
   height: 90vh;
-  background-color: #121212;
+  background-color: black;
   padding-left: 1rem;
   padding-right: 1rem;
   color: #847e82;
