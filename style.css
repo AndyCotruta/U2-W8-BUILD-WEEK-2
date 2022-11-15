@@ -110,6 +110,31 @@ h5 {
 
 /* ______________________________________________________________________ */
 
+/* ..........................Search Page.......................... */
+
+.search-bar {
+  background-color: white;
+  color: black;
+  height: 80%;
+  width: 450px;
+  margin-right: auto;
+  padding-inline: 10px;
+  border-radius: 20px;
+  display: flex;
+}
+
+input {
+  width: 300px;
+  border: none;
+  padding-left: 10px;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* ............................................................... */
+
 .scroll-bar {
   overflow: auto;
 
