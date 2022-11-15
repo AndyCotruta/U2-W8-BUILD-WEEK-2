@@ -2,6 +2,7 @@
 /* Style for homepage center section */
 .center-nav-bar {
   height: 7vh;
+  /* position: absolute; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -109,10 +110,12 @@
 } */
 
 .background {
+  
   background-image: url(https://www.ilikeyouroldstuff.com/sites/g/files/g2000009801/files/inline-images/green-day-1994.jpg);
   height: 20rem;
   background-size: cover;
   background-position-y: 9%;
+  
 }
 
 .artist-info > p {

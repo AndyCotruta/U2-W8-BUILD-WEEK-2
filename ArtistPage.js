@@ -11,10 +11,23 @@ function getData(search) {
 
   fetch(`https://deezerdevs-deezer.p.rapidapi.com/artist/${search}`, options)
     .then((response) => response.json())
-    .then((response) => console.log(response))
+    .then((response) => {
+      let info = response;
+
+      console.log(info);
+      RenderArtistName(info);
+    })
     .catch((err) => console.error(err));
 }
 
+function RenderSongs(artist){
+    fetch(``)
+}
+
+function RenderArtistName(info) {
+  // Artist name
+  let aristNameBox = document.getElementById("artistNameBox");
+  aristNameBox.innerHTML = `<h1 class="title-artist" >${info.name}</h1> `;
+}
+
 getData(artistId);
-
-
