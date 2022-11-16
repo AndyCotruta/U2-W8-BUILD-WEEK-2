@@ -1,7 +1,7 @@
 let params = new URLSearchParams(document.location.search); //searching for params in the navbar
 const albumId = params.get("albumId"); //applying get() method to read the actual value present in the navbar - albumId is the one passed
 
-function getData(albumId) {
+async function getData(albumId) {
   const options = {
     method: "GET",
     headers: {
@@ -10,11 +10,11 @@ function getData(albumId) {
     },
   };
 
-  fetch(
+  await fetch(
     `https://striveschool-api.herokuapp.com/api/deezer/album/${albumId}`,
     options
   )
-    .then((response) => response.json())
+    .then(async (response) => await response.json())
     .then((response) => {
       const data = response;
       console.log(data.tracks.data[0].artist.name);
@@ -30,6 +30,8 @@ function renderAlbum(data) {
   const albumContainer = document.getElementById("albumData");
   const albumCard = document.getElementById("card-album");
   let i = 0;
+
+  artistId = data.artist.id;
   chosenAlbumTracks = data.tracks.data;
   chosenAlbumInfo = data.tracks.data[0].album;
   chosenArtist = data.tracks.data[0].artist.name;
@@ -46,18 +48,20 @@ function renderAlbum(data) {
               <div class="d-flex w-100 align-items-end ml-4">
                 <div>
                   <div>
-                    <h3>ALBUM</h3>
+                    <h3 class="albumTitle">ALBUM</h3>
                     <h1>${chosenAlbumInfo.title}</h1>
                   </div>
                   <div>
                     <div class="d-flex justify-content-center">
-                      <img
+                    <img
                         class="avatar"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe3Wmrg2Lr59nEn2lG49g2849aW9eszJkao5w9m0b7CA&s"
+                        src="${chosenAlbumInfo.cover}"
                         alt=""
                       />
                       <p class="artist-info-banner">
-                      ${chosenArtist} - 1994 - 15 songs, 38 min 22 sec
+                      <span onclick=goToArtist('${String(
+                        artistId
+                      )}')>${chosenArtist}</span> - 1994 - 15 songs, 38 min 22 sec
                       </p>
                     </div>
                   </div>
@@ -66,13 +70,16 @@ function renderAlbum(data) {
             </div>`;
 
   chosenAlbumTracks.forEach((element) => {
+    let minutes = Math.floor(Math.random() * (4 - 2)) + 2;
+    let seconds1 = Math.floor(Math.random() * (5 - 1)) + 1;
+    let seconds2 = Math.floor(Math.random() * (9 - 0)) + 0;
     i++;
     albumContainer.innerHTML += `    
-    <li class="track-list">
+    <li class="music-list">
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <div class="mr-5">
-          <p class="info-list-paragraph">${i}.</p>
+          <p class="info-list-paragraph">${i}</p>
         </div>
         <div>
           <p class="info-list-paragraph">
@@ -82,9 +89,14 @@ function renderAlbum(data) {
         </div>
       </div>
       <div class="mr-3">
-        <p class="info-list-paragraph">2:07</p>
+        <p class="info-list-paragraph">${minutes}:${seconds1}${seconds2}</p>
       </div>
     </div>
   </li>`;
   });
 }
+
+const goToArtist = (artistId) => {
+  console.log(`This is the artist id ${artistId} `);
+  window.location.assign(`./artist.html?artistId=${artistId}`);
+};
