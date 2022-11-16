@@ -27,7 +27,7 @@ const fetchAndCreateGoodMorning = async () => {
     <div class="good-morning-cards card mb-3" onclick=goToAlbum('${String(
       dataArray[i].album.id
     )}')>
-  <div class="row no-gutters">
+    <div class="row">
     <div class="col-md-4">
       <img src=${dataArray[i].album.cover} alt="...">
     </div>

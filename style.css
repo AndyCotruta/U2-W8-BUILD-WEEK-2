@@ -270,7 +270,8 @@ input::placeholder {
 /* .......................General Page Blueprint............................... */
 
 .left-nav {
-  width: 15vw;
+  min-width: 250px;
+  max-width: 250px;
   height: 90vh;
   background-color: black;
   padding-left: 1rem;
@@ -664,4 +665,3 @@ input::placeholder {
   background: #555;
 }
 /* ................................................................................. */
-

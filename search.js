@@ -41,8 +41,10 @@ const fetchAndCreateRecommended = async () => {
     "#BC5900",
   ];
 
+  const browseAllRow = document.querySelector(".browse-all");
+
+  browseAllRow.innerHTML = "";
   for (let i = 0; i < 20; i++) {
-    const browseAllRow = document.querySelector(".browse-all");
     browseAllRow.innerHTML += `
     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
     <div class="browse-all-cards card mb-4" style="background-color:${
@@ -55,51 +57,57 @@ const fetchAndCreateRecommended = async () => {
     <p class="card-text line-clamp">${dataArray[i].album.title}</p>
   </div>
 </div>
-    </div>
-    `;
+    </div>`;
   }
-  fetchAndCreateSearched(fetchAndCreateRecommended);
 };
 
 const input = document.querySelector("#search-field");
-input.addEventListener(
-  "input",
-  (fetchAndCreateSearched = async (fetchAndCreateRecommended) => {
-    const searchField = document.querySelector("#search-field");
-    const searchedValue = searchField.value;
-    console.log(searchedValue);
-    const response = await fetch(
-      `https://striveschool-api.herokuapp.com/api/deezer/search?q=${searchedValue}`,
-      options
-    );
-    const fetched = await response.json();
-    const dataArray = fetched.data;
-    console.log(dataArray);
+input.addEventListener("input", async () => {
+  const searchField = document.querySelector("#search-field");
+  const searchedValue = searchField.value;
+  console.log(searchedValue);
+  if (searchedValue.length === 0) {
+    fetchAndCreateRecommended();
+  } else {
+    fetchAndCreateSearched();
+  }
+});
+
+fetchAndCreateSearched = async () => {
+  const searchField = document.querySelector("#search-field");
+  const searchedValue = searchField.value;
+  console.log(searchedValue);
+  const response = await fetch(
+    `https://striveschool-api.herokuapp.com/api/deezer/search?q=${searchedValue}`,
+    options
+  );
+  const fetched = await response.json();
+  const dataArray = fetched.data;
+  console.log(dataArray);
+  const browseAllRow = document.querySelector(".browse-all");
+  browseAllRow.innerHTML = "";
+  for (let i = 0; i < 12; i++) {
     const browseAllRow = document.querySelector(".browse-all");
-    browseAllRow.innerHTML = "";
-    for (let i = 0; i < 12; i++) {
-      const browseAllRow = document.querySelector(".browse-all");
-      browseAllRow.innerHTML += `
-    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
-    <div class="good-morning-cards card mb-3" onclick=goToAlbum('${String(
-      dataArray[i].album.id
-    )}')>
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src=${dataArray[i].album.cover} alt="...">
-    </div>
-    <div class="good-morning-card-body col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">${dataArray[i].album.title}</h5>
-      </div>
-    </div>
-  </div>
+    browseAllRow.innerHTML += `
+   <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+   <div class="good-morning-cards card mb-3" onclick=goToAlbum('${String(
+     dataArray[i].album.id
+   )}')>
+ <div class="row no-gutters">
+   <div class="col-md-4">
+     <img src=${dataArray[i].album.cover} alt="...">
+   </div>
+   <div class="good-morning-card-body col-md-8">
+     <div class="card-body">
+       <h5 class="card-title">${dataArray[i].album.title}</h5>
+     </div>
+   </div>
+ </div>
 </div>
-    </div>
-    `;
-    }
-  })
-);
+   </div>
+   `;
+  }
+};
 
 const goToAlbum = (albumId) => {
   console.log(`This is the album id ${albumId} `);
