@@ -174,12 +174,6 @@ input::placeholder {
 
 /* ............................Album Page..................................... */
 
-.scroll-bar {
-  overflow: auto;
-  height: 90vh;
-  background: linear-gradient(#5a1212, #0a0a0a);
-}
-
 .user-name-div {
   display: flex;
   justify-content: space-around;
@@ -213,23 +207,20 @@ input::placeholder {
 }
 
 .icons-after-banner {
-  font-size: 30px;
+  font-size: 25px;
 }
 .green-player-btn {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   color: white;
   background-color: green;
   border-radius: 50%;
+  border: none;
 }
 
 .heart,
 .dots {
   color: white;
-}
-
-.info-list-paragraph {
-  margin: 0;
 }
 
 .track-list {
@@ -240,7 +231,7 @@ input::placeholder {
 .background {
   height: 20rem;
   background-size: cover;
-  background-position-y: 9%;
+  background-position-y: center;
 }
 
 .artist-info > p {
@@ -266,6 +257,12 @@ input::placeholder {
   border: 1px solid white;
   padding: 8px;
   height: 100%;
+}
+.albumTitle {
+  font-size: 1rem;
+}
+.artist-info-banner {
+  cursor: pointer;
 }
 
 /* ............................Album Page..................................... */
@@ -495,8 +492,39 @@ input::placeholder {
 
 /* ..............................Artist Page........................................ */
 
-.artist-li {
+/* ................................................................................. */
+/* .................STYLES FOR BOTH ARTIST AND ALGUM PAGE............................ */
+.music-list {
   list-style-type: none;
+  padding: 10px;
 }
 
+.info-list-paragraph {
+  margin: 0;
+  font-size: 0.8rem;
+}
+.scroll-bar {
+  overflow: auto;
+  height: 90vh;
+  /* background: linear-gradient(#5a1212, #0a0a0a);*/
+}
+
+.scroll-bar::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.scroll-bar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.scroll-bar::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.scroll-bar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 /* ................................................................................. */

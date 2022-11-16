@@ -1,5 +1,5 @@
-let artistId = "412";
-let artistName = "greenday";
+let params = new URLSearchParams(document.location.search); //searching for params in the navbar
+const artistId = params.get("artistId"); //applying get() method to read the actual value present in the navbar - albumId is the one passed
 
 async function getData(search) {
   const options = {
@@ -17,8 +17,10 @@ async function getData(search) {
     .then(async (response) => await response.json())
     .then((response) => {
       let info = response;
+      let chosenArtist = info.name;
+      console.log(chosenArtist);
       renderArtistName(info);
-      // console.log(info);
+      getSongs(chosenArtist);
     })
     .catch((err) => console.error(err));
 }
@@ -50,7 +52,6 @@ async function getSongs(search) {
     .then((response) => {
       let info = response;
       renderSongs(info);
-      // console.log(info.data);
     })
     .catch((err) => console.error(err));
 }
@@ -59,26 +60,31 @@ function renderSongs(info) {
   let musicListBox = document.getElementById("musicList");
   let musicList = info.data;
   musicList.forEach((element, index) => {
-    // console.log(element);
+    let minutes = Math.floor(Math.random() * (4 - 2)) + 2;
+    let seconds1 = Math.floor(Math.random() * (5 - 1)) + 1;
+    let seconds2 = Math.floor(Math.random() * (9 - 0)) + 0;
     musicListBox.innerHTML += `
-    <li class="artist-li">
+    <li class="music-list">
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
+        <div class="mr-5">
+          <p class="info-list-paragraph">${index + 1}</p>
+        </div>
         <div>
-          <p class="info-list-paragraph">
-            <strong>${index + 1}. ${element.title}</strong>
+        <p class="info-list-paragraph">
+            <strong>${element.title}</strong>
           </p>
+       
           <p class="info-list-paragraph">${element.artist.name}</p>
         </div>
       </div>
   
       <div class="mr-3">
-        <p class="info-list-paragraph">2:07</p>
+        <p class="info-list-paragraph">${minutes}:${seconds1}${seconds2}</p>
       </div>
     </div>
   </li>`;
   });
 }
 
-getSongs(artistName);
 getData(artistId);
