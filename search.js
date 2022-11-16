@@ -100,3 +100,8 @@ input.addEventListener(
     }
   })
 );
+
+const goToAlbum = (albumId) => {
+  console.log(`This is the album id ${albumId} `);
+  window.location.assign(`./album.html?albumId=${albumId}`);
+};

@@ -170,7 +170,9 @@ input::placeholder {
   bottom: 0;
   right: 0;
 }
-/* ............................................................... */
+/* ............................Search Page................................... */
+
+/* ............................Album Page..................................... */
 
 .scroll-bar {
   overflow: auto;
@@ -231,18 +233,10 @@ input::placeholder {
   margin: 0;
 }
 
-/*li {
+.track-list {
   list-style: none;
   font-size: 0.9rem;
-}*/
-
-/* SCROLLBAR STYLES*/
-/* ::-webkit-scrollbar {
-  width: 10px;
 }
-::-webkit-scrollbar-track {
-  background: rgb(220, 220, 220, 0.5);
-} */
 
 .background {
   background-image: url(https://www.ilikeyouroldstuff.com/sites/g/files/g2000009801/files/inline-images/green-day-1994.jpg);
@@ -279,6 +273,10 @@ input::placeholder {
 h1 {
   color: brown;
 }
+
+/* ............................Album Page..................................... */
+
+/* .......................General Page Blueprint............................... */
 
 .left-nav {
   width: 15vw;
@@ -499,3 +497,4 @@ h1 {
 .mr-45 {
   margin-right: 2rem;
 }
+/* ..............................General Page Blueprint............................. */
