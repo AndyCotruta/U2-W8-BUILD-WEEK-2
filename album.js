@@ -79,7 +79,7 @@ function renderAlbum(data) {
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <div class="mr-5">
-          <p class="info-list-paragraph">${i}</p>
+          <p class="info-list-paragraph">${i}.</p>
         </div>
         <div>
           <p class="info-list-paragraph">

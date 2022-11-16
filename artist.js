@@ -1,5 +1,5 @@
-let params = new URLSearchParams(document.location.search); //searching for params in the navbar
-const artistId = params.get("artistId"); //applying get() method to read the actual value present in the navbar - albumId is the one passed
+let parameters = new URLSearchParams(document.location.search); //searching for params in the navbar
+const artistId = parameters.get("artistId"); //applying get() method to read the actual value present in the navbar - albumId is the one passed
 
 async function getData(search) {
   const options = {
@@ -11,7 +11,7 @@ async function getData(search) {
   };
 
   await fetch(
-    `https://deezerdevs-deezer.p.rapidapi.com/artist/${search}`,
+    `https://striveschool-api.herokuapp.com/api/deezer/artist/${search}`,
     options
   )
     .then(async (response) => await response.json())
@@ -45,7 +45,7 @@ async function getSongs(search) {
   };
 
   await fetch(
-    `https://deezerdevs-deezer.p.rapidapi.com/search?q=${search}`,
+    `https://striveschool-api.herokuapp.com/api/deezer/search?q=${search}`,
     options
   )
     .then(async (response) => await response.json())
@@ -68,7 +68,7 @@ function renderSongs(info) {
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <div class="mr-5">
-          <p class="info-list-paragraph">${index + 1}</p>
+          <p class="info-list-paragraph">${index + 1}.</p>
         </div>
         <div>
         <p class="info-list-paragraph">
