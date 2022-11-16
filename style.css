@@ -498,3 +498,21 @@ h1 {
   margin-right: 2rem;
 }
 /* ..............................General Page Blueprint............................. */
+
+/* ..............................LogIn Page................................ */
+
+.spotify-banner {
+  height: 15vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid grey;
+}
+
+.spotify-banner img {
+  height: 10vh;
+  filter: brightness(0);
+}
+
+/* ........................................................................ */
