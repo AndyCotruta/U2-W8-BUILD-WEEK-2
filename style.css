@@ -176,7 +176,6 @@ input::placeholder {
 
 .scroll-bar {
   overflow: auto;
-
   height: 90vh;
   background: linear-gradient(#5a1212, #0a0a0a);
 }
@@ -239,7 +238,6 @@ input::placeholder {
 }
 
 .background {
-  background-image: url(https://www.ilikeyouroldstuff.com/sites/g/files/g2000009801/files/inline-images/green-day-1994.jpg);
   height: 20rem;
   background-size: cover;
   background-position-y: 9%;
@@ -268,10 +266,6 @@ input::placeholder {
   border: 1px solid white;
   padding: 8px;
   height: 100%;
-}
-
-h1 {
-  color: brown;
 }
 
 /* ............................Album Page..................................... */

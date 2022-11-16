@@ -1,7 +1,7 @@
 let params = new URLSearchParams(document.location.search); //searching for params in the navbar
 const albumId = params.get("albumId"); //applying get() method to read the actual value present in the navbar - albumId is the one passed
 
-function getData(albumId) {
+async function getData(albumId) {
   const options = {
     method: "GET",
     headers: {
@@ -10,11 +10,11 @@ function getData(albumId) {
     },
   };
 
-  fetch(
+  await fetch(
     `https://striveschool-api.herokuapp.com/api/deezer/album/${albumId}`,
     options
   )
-    .then((response) => response.json())
+    .then(async (response) => await response.json())
     .then((response) => {
       const data = response;
       console.log(data.tracks.data[0].artist.name);
@@ -72,7 +72,7 @@ function renderAlbum(data) {
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <div class="mr-5">
-          <p class="info-list-paragraph">${i}.</p>
+          <p class="info-list-paragraph">${i}</p>
         </div>
         <div>
           <p class="info-list-paragraph">
