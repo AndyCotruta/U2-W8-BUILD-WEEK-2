@@ -38,37 +38,37 @@ function renderAlbum(data) {
 
   albumCard.innerHTML += `
     <div class="d-flex mt-5">
-              <div class="card" style="width: 12rem">
+              <div class="card-album">
                 <img
-                  src="${chosenAlbumInfo.cover}"
-                  class="card-img-top"
+                  src="${chosenAlbumInfo.cover_medium}"
+                  class="rendered-image"
                   alt="album-image"
                 />
               </div>
-              <div class="d-flex w-100 align-items-end ml-4">
-                <div>
-                  <div>
+              <div class="album-details px-3">
+                
+                 
                     <h3 class="albumTitle">ALBUM</h3>
-                    <h1>${chosenAlbumInfo.title}</h1>
-                  </div>
+                    <h1 class="title-album">${chosenAlbumInfo.title}</h1>
+                  
                   <div>
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex artist-description">
                     <img
                         class="avatar"
                         src="${chosenAlbumInfo.cover}"
                         alt=""
                       />
-                      <p class="artist-info-banner">
-                      <span onclick=goToArtist('${String(
+                      <p class="artist-info-banner artist-numbers">
+                      <span class="artist-decoration" onclick=goToArtist('${String(
                         artistId
                       )}')>${chosenArtist}</span> - 1994 - 15 songs, 38 min 22 sec
                       </p>
                     </div>
                   </div>
-                </div>
+                
               </div>
             </div>`;
-  const image = document.querySelector(".card-img-top");
+  const image = document.querySelector(".rendered-image");
   console.log(image);
   renderGradient(image);
 
@@ -81,17 +81,17 @@ function renderAlbum(data) {
     <li class="music-list">
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
-        <div class="mr-5">
-          <p class="info-list-paragraph">${i}.</p>
+        <div class="mx-3">
+          <p class="info-list-paragraph">${i}</p>
         </div>
         <div>
-          <p class="info-list-paragraph">
+          <p class="info-title-paragraph">
             <strong>${element.title}</strong>
           </p>
           <p class="info-list-paragraph">${element.artist.name}</p>
         </div>
       </div>
-      <div class="mr-3">
+      <div class="">
         <p class="info-list-paragraph">${minutes}:${seconds1}${seconds2}</p>
       </div>
     </div>
