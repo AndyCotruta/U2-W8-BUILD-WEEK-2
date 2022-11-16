@@ -58,18 +58,15 @@ async function getSongs(search) {
 function renderSongs(info) {
   let musicListBox = document.getElementById("musicList");
   let musicList = info.data;
-  musicList.forEach((element) => {
+  musicList.forEach((element, index) => {
     // console.log(element);
     musicListBox.innerHTML += `
-    <li>
+    <li class="artist-li">
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
-        <div class="mr-5">
-          <p class="info-list-paragraph">1</p>
-        </div>
         <div>
           <p class="info-list-paragraph">
-            <strong>${element.title}</strong>
+            <strong>${index + 1}. ${element.title}</strong>
           </p>
           <p class="info-list-paragraph">${element.artist.name}</p>
         </div>
