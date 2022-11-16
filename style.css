@@ -216,6 +216,11 @@ input::placeholder {
   background-color: green;
   border-radius: 50%;
   border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.green-player-btn:hover {
+  transform: scale(1.1);
 }
 
 .heart,
@@ -691,10 +696,6 @@ input::placeholder {
   overflow: auto;
   height: 90vh;
   /* background: linear-gradient(#5a1212, #0a0a0a);*/
-}
-
-.scroll-bar::-webkit-scrollbar {
-  width: 10px;
 }
 
 /* Track */
