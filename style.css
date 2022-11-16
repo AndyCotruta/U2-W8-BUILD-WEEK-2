@@ -174,6 +174,39 @@ input::placeholder {
 
 /* ............................Album Page..................................... */
 
+.card-album {
+  border: none;
+  box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.2);
+}
+
+.rendered-image {
+  max-width: 450px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.title-album {
+  font-size: 4rem;
+}
+.album-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.artist-description {
+  display: flex;
+  align-items: center;
+}
+
+.artist-numbers {
+  margin: 0;
+}
+
+.artist-decoration:hover {
+  text-decoration: underline;
+}
+
 .user-name-div {
   display: flex;
   justify-content: space-around;
@@ -212,8 +245,8 @@ input::placeholder {
 .green-player-btn {
   width: 45px;
   height: 45px;
-  color: white;
-  background-color: green;
+  color: black;
+  background-color: #1cdf63;
   border-radius: 50%;
   border: none;
   transition: all 0.2s ease-in-out;
@@ -225,7 +258,15 @@ input::placeholder {
 
 .heart,
 .dots {
+  cursor: pointer;
+  color: #847e82;
+  transition: all 0.2s ease-in-out;
+}
+
+.heart:hover,
+.dots:hover {
   color: white;
+  transform: scale(1.1);
 }
 
 .track-list {
@@ -241,7 +282,7 @@ input::placeholder {
 
 .artist-info > p {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 .banner-artist {
@@ -685,13 +726,20 @@ input::placeholder {
 /* .................STYLES FOR BOTH ARTIST AND ALGUM PAGE............................ */
 .music-list {
   list-style-type: none;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .info-list-paragraph {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  color: #847e82;
 }
+
+.info-title-paragraph {
+  margin: 0;
+}
+
 .scroll-bar {
   overflow: auto;
   height: 90vh;
@@ -713,3 +761,53 @@ input::placeholder {
   background: #555;
 }
 /* ................................................................................. */
+
+.test-img {
+  display: none;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+/* .................Style for small image on artist page............................ */
+
+/* .artistbanner {
+  height: 100%;
+  width: 100%;
+}
+
+.artist-info {
+  max-width: 350px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border: none;
+}
+
+.artist-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+/* .................Style for small image on artist page............................ */
+#background {
+  background-color: #00000078;
+  background-blend-mode: darken;
+}
+
+.artist-navbar {
+  position: absolute;
+  width: 83%;
+}
+
+.artist-text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  color: white;
+}
+
+.artist-h1 {
+  font-size: 6rem;
+}
