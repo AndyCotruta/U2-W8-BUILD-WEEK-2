@@ -272,7 +272,7 @@ input::placeholder {
 .left-nav {
   min-width: 250px;
   max-width: 250px;
-  height: 90vh;
+  height: 88vh;
   background-color: black;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -331,7 +331,7 @@ input::placeholder {
 
 .center-section {
   width: 85%;
-  height: 90vh;
+  height: 88vh;
   background-color: bisque;
 }
 
@@ -354,7 +354,7 @@ input::placeholder {
 }
 
 .now-playing {
-  height: 10vh;
+  height: 12vh;
   min-width: 620px;
   background-color: #181818;
   color: #847e82;
@@ -363,9 +363,23 @@ input::placeholder {
   justify-content: space-between;
 }
 
+.title-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .song-details {
   min-width: 180px;
   width: 30%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .mini-song-album img {

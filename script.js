@@ -53,7 +53,7 @@ const fetchAndCreateRecentlyPlayed = async () => {
   for (let i = 0; i < 6; i++) {
     const recentlyPlayedRow = document.querySelector(".recently-played");
     recentlyPlayedRow.innerHTML += `
-    <div class="col-sm-6 col-md-4 col-xl-2">
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
     <div class="recently-played-cards card mb-3" onclick=goToAlbum('${String(
       dataArray[i].album.id
     )}')>
