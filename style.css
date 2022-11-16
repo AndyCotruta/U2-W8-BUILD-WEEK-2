@@ -114,7 +114,7 @@ h5 {
 
 .center-section-search {
   width: 85%;
-  height: 90vh;
+  height: 88vh;
   background-color: #121212;
   overflow: auto;
 }
@@ -742,7 +742,7 @@ input::placeholder {
 
 .scroll-bar {
   overflow: auto;
-  height: 90vh;
+  height: 88vh;
   /* background: linear-gradient(#5a1212, #0a0a0a);*/
 }
 
