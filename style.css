@@ -507,7 +507,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid lightgray;
 }
 
 .spotify-banner img {
@@ -516,11 +516,124 @@ h1 {
 }
 
 .login-container {
-  background-color: antiquewhite;
   height: 80vh;
   max-width: 400px;
   margin-inline: auto;
-  padding: 10px;
 }
 
+.continue-btn {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-facebook {
+  background-color: #3e5a9a;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-apple {
+  background-color: black;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-facebook:hover,
+.btn-apple:hover {
+  transform: scale(1.01);
+}
+
+.br1 {
+  width: 181px;
+  height: 1px;
+  background-color: lightgray;
+}
+
+.user-input {
+  width: 100%;
+  height: 32px;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+}
+
+.user-input::placeholder {
+  color: lightgray;
+}
+
+.login-area {
+  width: 100%;
+}
+
+.login-checkbox {
+  height: 16px;
+  width: 16px;
+}
+
+.login-btn {
+  border: none;
+  border-radius: 20px;
+  height: 40px;
+  width: 190px;
+  background-color: #47b850;
+  color: white;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.login-btn:hover {
+  transform: scale(1.035);
+}
+
+.forgot-password-text {
+  color: #47b850;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.forgot-password-text:hover {
+  text-decoration: none;
+  color: #47b850;
+  transform: scale(1.05);
+}
+
+.br2 {
+  width: 100%;
+  height: 1px;
+  background-color: lightgray;
+}
+
+.account {
+  font-weight: bold;
+}
+
+.signup-btn {
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.signup-btn:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.03);
+}
+
+.disclaimer {
+  font-size: 10px;
+  color: lightgray;
+  text-align: center;
+}
+
+.disclaimer-green {
+  color: #47b850;
+}
 /* ........................................................................ */
