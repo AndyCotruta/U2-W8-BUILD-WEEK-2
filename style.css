@@ -515,4 +515,12 @@ h1 {
   filter: brightness(0);
 }
 
+.login-container {
+  background-color: antiquewhite;
+  height: 80vh;
+  max-width: 400px;
+  margin-inline: auto;
+  padding: 10px;
+}
+
 /* ........................................................................ */
