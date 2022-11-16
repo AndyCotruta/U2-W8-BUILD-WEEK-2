@@ -68,6 +68,9 @@ function renderAlbum(data) {
                 </div>
               </div>
             </div>`;
+  const image = document.querySelector(".card-img-top");
+  console.log(image);
+  renderGradient(image);
 
   chosenAlbumTracks.forEach((element) => {
     let minutes = Math.floor(Math.random() * (4 - 2)) + 2;
@@ -100,3 +103,62 @@ const goToArtist = (artistId) => {
   console.log(`This is the artist id ${artistId} `);
   window.location.assign(`./artist.html?artistId=${artistId}`);
 };
+
+function getColor(imageElement, ratio) {
+  const canvas = document.createElement("canvas");
+  let width = (canvas.width = imageElement.width);
+  let height = (canvas.height = imageElement.height);
+  const context = canvas.getContext("2d");
+  context.drawImage(imageElement, 0, 0);
+  let data, length;
+  let i = -4,
+    count = 0;
+  try {
+    data = context.getImageData(0, 0, width, height);
+    length = data.data.length;
+  } catch (err) {
+    console.error(err);
+    return {
+      R: 0,
+      G: 0,
+      B: 0,
+    };
+  }
+  let R, G, B;
+  R = G = B = 0;
+  while ((i += ratio * 4) < length) {
+    ++count;
+    R += data.data[i];
+    G += data.data[i + 1];
+    B += data.data[i + 2];
+  }
+  R = ~~(R / count);
+  G = ~~(G / count);
+  B = ~~(B / count);
+  return {
+    R,
+    G,
+    B,
+  };
+}
+
+const renderGradient = (image) => {
+  image.crossOrigin = "Anonymous";
+  image.onload = function () {
+    const { R, G, B } = getColor(image, 4);
+    const centerSection = document.querySelector(".center-section");
+    centerSection.style.backgroundImage = `linear-gradient( 0deg, rgba(18, 18, 18, 1) 0%, rgba(${R}, ${G}, ${B}, 1) 100% )`;
+  };
+};
+
+// ..................Test function that actually works......................................//
+
+// const image = document.querySelector(".test-img");
+// image.crossOrigin = "Anonymous";
+// image.onload = function () {
+//   const { R, G, B } = getColor(image, 4);
+//   const centerSection = document.querySelector(".center-section");
+//   centerSection.style.backgroundImage = `linear-gradient( 0deg, rgba(18, 18, 18, 1) 0%, rgba(${R}, ${G}, ${B}, 1) 100% )`;
+// };
+
+//..................................Test function that actually works................................//
