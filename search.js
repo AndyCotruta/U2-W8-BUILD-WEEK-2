@@ -1,5 +1,6 @@
 window.onload = () => {
   fetchAndCreateRecommended();
+  getUser();
 };
 
 const options = {
@@ -113,3 +114,44 @@ const goToAlbum = (albumId) => {
   console.log(`This is the album id ${albumId} `);
   window.location.assign(`./album.html?albumId=${albumId}`);
 };
+
+const getUser = () => {
+  const usernameText = document.querySelector(".user-name-text");
+  const currentUser = localStorage.getItem("username");
+  console.log(currentUser);
+  if (currentUser !== null) {
+    usernameText.innerText = currentUser;
+  } else {
+    const userNameDiv = document.querySelector(".user-name-div");
+    userNameDiv.classList.add("hidden");
+    const navbarSignupBtn = document.querySelector(".navbar-signup-btn");
+    navbarSignupBtn.classList.remove("d-none");
+    const navbarLoginBtn = document.querySelector(".navbar-login-btn");
+    navbarLoginBtn.classList.remove("d-none");
+  }
+};
+
+const dropdownBtn = document.querySelector(".dropdownBtn");
+console.log(dropdownBtn);
+dropdownBtn.addEventListener("click", () => {
+  const dropdownMenu = document.querySelector(".dropMenu");
+  dropdownMenu.classList.toggle("d-none");
+});
+
+const logoutBtn = document.querySelector(".logout-btn");
+logoutBtn.addEventListener("click", () => {
+  const userNameDiv = document.querySelector(".user-name-div");
+  userNameDiv.classList.add("hidden");
+  const navbarSignupBtn = document.querySelector(".navbar-signup-btn");
+  navbarSignupBtn.classList.remove("d-none");
+  const navbarLoginBtn = document.querySelector(".navbar-login-btn");
+  navbarLoginBtn.classList.remove("d-none");
+  const dropdownMenu = document.querySelector(".dropMenu");
+  dropdownMenu.classList.add("d-none");
+  localStorage.clear();
+});
+
+const loginBtn = document.querySelector(".navbar-login-btn");
+loginBtn.addEventListener("click", () => {
+  window.location.assign("./login.html");
+});

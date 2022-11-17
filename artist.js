@@ -1,3 +1,7 @@
+window.onload = () => {
+  getUser();
+};
+
 let parameters = new URLSearchParams(document.location.search); //searching for params in the navbar
 const artistId = parameters.get("artistId"); //applying get() method to read the actual value present in the navbar - albumId is the one passed
 
@@ -29,22 +33,7 @@ function renderArtistName(info) {
   let background = document.getElementById("background");
   background.classList.add("background");
   background.style.backgroundImage = `url(${info.picture_xl})`;
-  background.innerHTML = `
-  <div class="center-nav-bar artist-navbar px-35 py-2">
-              <div class="btns-prev-next">
-                <img class="img-btn" src="img/prev.svg" alt="" />
-
-                <img class="img-btn" src="img/next.svg" alt="" />
-              </div>
-
-              <div class="user-name-div text-white">
-                <span class="user-name-image"
-                  ><i class="bi bi-person-circle"></i
-                ></span>
-                <span class="user-name-text">User Name</span>
-                <span><i class="bi bi-caret-down-fill"></i></span>
-              </div>
-            </div>
+  background.innerHTML += `
   <div class="artist-info artist-text px-35">
    
                 <p>
@@ -194,4 +183,66 @@ const renderGradient = (image) => {
     const centerSection = document.querySelector(".center-section");
     centerSection.style.backgroundImage = `linear-gradient( 0deg, rgba(18, 18, 18, 1) 0%, rgba(${R}, ${G}, ${B}, 1) 100% )`;
   };
+};
+
+const getUser = () => {
+  const usernameText = document.querySelector(".user-name-text");
+  const currentUser = localStorage.getItem("username");
+  console.log(currentUser);
+  if (currentUser !== null) {
+    usernameText.innerText = currentUser;
+  } else {
+    const userNameDiv = document.querySelector(".user-name-div");
+    userNameDiv.classList.add("hidden");
+    const navbarSignupBtn = document.querySelector(".navbar-signup-btn");
+    navbarSignupBtn.classList.remove("d-none");
+    const navbarLoginBtn = document.querySelector(".navbar-login-btn");
+    navbarLoginBtn.classList.remove("d-none");
+  }
+};
+
+const dropdownBtn = document.querySelector(".dropdownBtn");
+console.log(dropdownBtn);
+dropdownBtn.addEventListener("click", () => {
+  const dropdownMenu = document.querySelector(".dropMenu");
+  dropdownMenu.classList.toggle("d-none");
+});
+
+const toggle = () => {
+  const dropdownMenu = document.querySelector(".dropMenu");
+  dropdownMenu.classList.toggle("d-none");
+};
+
+const logoutBtn = document.querySelector(".logout-btn");
+logoutBtn.addEventListener("click", () => {
+  const userNameDiv = document.querySelector(".user-name-div");
+  userNameDiv.classList.add("hidden");
+  const navbarSignupBtn = document.querySelector(".navbar-signup-btn");
+  navbarSignupBtn.classList.remove("d-none");
+  const navbarLoginBtn = document.querySelector(".navbar-login-btn");
+  navbarLoginBtn.classList.remove("d-none");
+  const dropdownMenu = document.querySelector(".dropMenu");
+  dropdownMenu.classList.add("d-none");
+  localStorage.clear();
+});
+
+const logOut = () => {
+  const userNameDiv = document.querySelector(".user-name-div");
+  userNameDiv.classList.add("hidden");
+  const navbarSignupBtn = document.querySelector(".navbar-signup-btn");
+  navbarSignupBtn.classList.remove("d-none");
+  const navbarLoginBtn = document.querySelector(".navbar-login-btn");
+  navbarLoginBtn.classList.remove("d-none");
+  const dropdownMenu = document.querySelector(".dropMenu");
+  dropdownMenu.classList.add("d-none");
+  localStorage.clear();
+};
+
+const loginBtn = document.querySelector(".navbar-login-btn");
+loginBtn.addEventListener("click", () => {
+  window.location.assign("./login.html");
+});
+
+const loginRedirect = () => {
+  window.location.assign("./login.html");
 };

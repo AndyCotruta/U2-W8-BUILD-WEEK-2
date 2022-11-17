@@ -212,8 +212,8 @@ input::placeholder {
   justify-content: space-around;
   align-items: center;
   background-color: #000000;
-  width: 120px;
-  height: 30px;
+  min-width: 120px;
+  height: 38px;
   padding: 0.4em;
   border-radius: 30px;
   cursor: pointer;
@@ -230,7 +230,7 @@ input::placeholder {
 }
 
 .img-btn {
-  height: 22px;
+  height: 30px;
 }
 .avatar {
   width: 20px;
@@ -582,6 +582,72 @@ input::placeholder {
 .mr-45 {
   margin-right: 2rem;
 }
+
+.navbar-log {
+  position: absolute;
+  right: 1.25rem;
+}
+
+.navbar-signup-btn {
+  position: absolute;
+  right: 8rem;
+  background-color: none;
+  color: #847e82;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-signup-btn:hover {
+  transform: scale(1.05);
+  color: white;
+}
+
+.navbar-login-btn {
+  position: absolute;
+  right: 1.25rem;
+  background-color: white;
+  color: black;
+  width: 100px;
+  border-radius: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-login-btn:hover {
+  transform: scale(1.05);
+}
+
+.dropMenu {
+  min-width: 180px;
+  margin: 0;
+  padding: 5px;
+  list-style-type: none;
+  background-color: #282828;
+  color: #fffefebd;
+  position: absolute;
+  right: 1.2rem;
+  transform: translateY(130px);
+  z-index: 10;
+  font-size: 14px;
+  user-select: none;
+}
+
+.dropMenu li {
+  padding: 8px;
+}
+
+.logout-btn {
+  border-top: 1px solid #fffefebd;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
 /* ..............................General Page Blueprint............................. */
 
 /* ..............................LogIn Page................................ */
@@ -801,7 +867,7 @@ input::placeholder {
 }
 
 .artist-text {
-  height: 100%;
+  height: 85%;
   display: flex;
   flex-direction: column;
   justify-content: end;
