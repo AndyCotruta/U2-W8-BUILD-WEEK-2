@@ -82,8 +82,8 @@ function renderAlbum(data) {
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <div class="mx-3 play-music">
-          <p id="index-album" class="info-list-paragraph">${i}</p>
-          <i id="triangle-album" class="bi bi-caret-right-fill hidden"></i>
+          <p class="info-list-paragraph index-album">${i}</p>
+          <i class="bi bi-caret-right-fill hidden triangle-album"></i>
         </div>
         <div>
           <p class="info-title-paragraph">
@@ -183,8 +183,8 @@ function fillHeart() {
 // playMusicBtn = document.querySelectorAll(".play-music");
 // console.log(playMusicBtn);
 function revealAdditionalBtns(clickEvent) {
-  // indexNumber = document.getElementById("index-album");
-  // triangle = document.getElementById("triangle-album");
+  indexNumber = document.querySelector(".index-album");
+  triangle = document.querySelectorAll(".triangle-album");
   clickEvent.classList.toggle("hidden");
   clickEvent.classList.toggle("hidden");
 }
