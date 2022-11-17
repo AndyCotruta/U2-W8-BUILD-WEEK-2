@@ -180,9 +180,11 @@ function fillHeart() {
 }
 
 //////////SIMONE FINISH THIS FUNCTION//////////////
-function revealAdditionalBtns() {
-  indexNumber = document.getElementById("index-album");
-  triangle = document.getElementById("triangle-album");
-  indexNumber.classList.toggle("hidden");
-  triangle.classList.toggle("hidden");
+// playMusicBtn = document.querySelectorAll(".play-music");
+// console.log(playMusicBtn);
+function revealAdditionalBtns(clickEvent) {
+  // indexNumber = document.getElementById("index-album");
+  // triangle = document.getElementById("triangle-album");
+  clickEvent.classList.toggle("hidden");
+  clickEvent.classList.toggle("hidden");
 }

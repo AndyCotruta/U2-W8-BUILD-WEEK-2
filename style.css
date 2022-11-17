@@ -828,4 +828,9 @@ input::placeholder {
 
 .play-music {
   cursor: pointer;
+  height: 20px;
+  width: 20px;
+}
+.bi-caret-right-fill {
+  font-size: 1rem;
 }
