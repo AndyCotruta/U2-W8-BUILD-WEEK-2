@@ -78,7 +78,7 @@ function renderAlbum(data) {
     let seconds2 = Math.floor(Math.random() * (9 - 0)) + 0;
     i++;
     albumContainer.innerHTML += `    
-    <li class="music-list">
+    <li class="music-list"  id="AlbumHover'>
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <div class="mx-3">
@@ -150,6 +150,15 @@ const renderGradient = (image) => {
     centerSection.style.backgroundImage = `linear-gradient( 0deg, rgba(18, 18, 18, 1) 0%, rgba(${R}, ${G}, ${B}, 1) 100% )`;
   };
 };
+
+let  ArtistHover = document.getElementById("AlbumHover");
+ArtistHover.onclick = function(){
+  alert("hih")
+ 
+
+}
+
+
 
 // ..................Test function that actually works......................................//
 
