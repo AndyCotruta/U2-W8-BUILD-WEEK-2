@@ -929,3 +929,16 @@ input::placeholder {
 .artist-h1 {
   font-size: 6rem;
 }
+
+.green-text {
+  color: #47b850;
+}
+
+.white-background {
+  background-color: #747171;
+  border-radius: 3px;
+}
+
+.white-text {
+  color: white;
+}

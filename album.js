@@ -216,12 +216,21 @@ loginBtn.addEventListener("click", () => {
 const playLiAudio = (audioArray, liArray, titleArray, artistArray) => {
   liArray.forEach((li, index) => {
     li.addEventListener("click", () => {
+      liArray[index].classList.add("white-background");
+      titleArray[index].classList.add("green-text");
+      artistArray[index].classList.add("white-text");
       for (let i = 0; i < audioArray.length; i++) {
         audioArray[i].pause();
+        if (i !== index) {
+          liArray[i].classList.remove("white-background");
+          titleArray[i].classList.remove("green-text");
+          artistArray[i].classList.remove("white-text");
+        }
       }
       audioArray[index].play();
       const playerSongTitle = document.querySelector(".song-title");
       playerSongTitle.innerText = titleArray[index].innerText;
+
       const playerArtistName = document.querySelector(".song-artist");
       playerArtistName.innerText = artistArray[index].innerText;
     });
