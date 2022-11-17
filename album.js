@@ -75,7 +75,7 @@ function renderAlbum(data) {
     let seconds2 = Math.floor(Math.random() * (9 - 0)) + 0;
     i++;
     albumContainer.innerHTML += `    
-    <li class="music-list">
+    <li class="music-list id="artistHover">
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <div class="mr-5">
@@ -100,3 +100,5 @@ const goToArtist = (artistId) => {
   console.log(`This is the artist id ${artistId} `);
   window.location.assign(`./artist.html?artistId=${artistId}`);
 };
+
+

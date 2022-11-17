@@ -634,6 +634,10 @@ input::placeholder {
   list-style-type: none;
   padding: 10px;
 }
+.music-list:hover{
+  /* background-color: #47b850; */
+  cursor: pointer;
+}
 
 .info-list-paragraph {
   margin: 0;
@@ -665,3 +669,6 @@ input::placeholder {
 }
 /* ................................................................................. */
 
+.activeArtist{
+  background-color: red;
+}
