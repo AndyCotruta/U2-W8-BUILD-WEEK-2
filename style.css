@@ -731,7 +731,7 @@ input::placeholder {
 }
 
 .info-list-paragraph {
-  margin: 0;
+  margin: 2;
   font-size: 1rem;
   color: #847e82;
 }
@@ -810,4 +810,22 @@ input::placeholder {
 
 .artist-h1 {
   font-size: 6rem;
+}
+
+/* .................Style for after banner buttons............................ */
+/* .................album page and artist page............................ */
+.paused-style {
+  font-size: 30px;
+  font-weight: bolder;
+}
+.hidden {
+  display: none;
+}
+
+.bi-heart-fill {
+  color: #1db954;
+}
+
+.play-music {
+  cursor: pointer;
 }

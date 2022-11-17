@@ -81,8 +81,9 @@ function renderAlbum(data) {
     <li class="music-list">
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
-        <div class="mx-3">
-          <p class="info-list-paragraph">${i}</p>
+        <div class="mx-3 play-music">
+          <p id="index-album" class="info-list-paragraph">${i}</p>
+          <i id="triangle-album" class="bi bi-caret-right-fill hidden"></i>
         </div>
         <div>
           <p class="info-title-paragraph">
@@ -162,3 +163,26 @@ const renderGradient = (image) => {
 // };
 
 //..................................Test function that actually works................................//
+
+function changeGreenButton() {
+  playButton = document.getElementById("play-album");
+  console.log(playButton);
+  pausedButton = document.getElementById("paused-album");
+  playButton.classList.toggle("hidden");
+  pausedButton.classList.toggle("hidden");
+}
+
+function fillHeart() {
+  heartFilled = document.getElementById("heart-fill-album");
+  regularHeart = document.getElementById("heart-album");
+  heartFilled.classList.toggle("hidden");
+  regularHeart.classList.toggle("hidden");
+}
+
+//////////SIMONE FINISH THIS FUNCTION//////////////
+function revealAdditionalBtns() {
+  indexNumber = document.getElementById("index-album");
+  triangle = document.getElementById("triangle-album");
+  indexNumber.classList.toggle("hidden");
+  triangle.classList.toggle("hidden");
+}

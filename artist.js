@@ -195,3 +195,18 @@ const renderGradient = (image) => {
     centerSection.style.backgroundImage = `linear-gradient( 0deg, rgba(18, 18, 18, 1) 0%, rgba(${R}, ${G}, ${B}, 1) 100% )`;
   };
 };
+
+function changeGreenButton() {
+  playButton = document.getElementById("play-artist");
+  console.log(playButton);
+  pausedButton = document.getElementById("paused-artist");
+  playButton.classList.toggle("hidden");
+  pausedButton.classList.toggle("hidden");
+}
+
+function fillHeart() {
+  heartFilled = document.getElementById("heart-fill-artist");
+  regularHeart = document.getElementById("heart-artist");
+  heartFilled.classList.toggle("hidden");
+  regularHeart.classList.toggle("hidden");
+}
