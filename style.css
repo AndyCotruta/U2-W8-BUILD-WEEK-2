@@ -51,6 +51,10 @@ h5 {
 .good-morning-cards:hover {
   background-color: rgba(255, 255, 255, 0.274);
 }
+
+.good-morning-cards:hover .green-player-btn-gm {
+  opacity: 1;
+}
 .good-morning-cards img {
   height: 60px;
   width: 60px;
@@ -76,12 +80,60 @@ h5 {
   transition: all 0.2s ease-in-out;
 }
 
+.green-player-btn-gm {
+  height: 16px;
+  width: 16px;
+  color: #1cdf63;
+  background-color: black;
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.6rem;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.green-player-btn-gm:hover {
+  transform: scale(1.1);
+}
+
+#gm-play {
+  transform: translate(-8px, -8px);
+}
+
+.green-player-btn-rp {
+  height: 20px;
+  width: 20px;
+  color: #1cdf63;
+  background-color: black;
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  right: 1.7rem;
+  bottom: 6.4rem;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.green-player-btn-rp:hover {
+  transform: scale(1.1);
+}
+
+#rp-play {
+  transform: translate(-8px, -8px);
+}
+
 .recently-played-cards:hover {
   background: linear-gradient(
     0deg,
     rgba(40, 40, 40, 1) 0%,
     rgba(40, 40, 40, 0.4808517156862745) 100%
   );
+}
+
+.recently-played-cards:hover .green-player-btn-rp {
+  opacity: 1;
 }
 
 .recently-played-cards img {
@@ -592,7 +644,7 @@ input::placeholder {
   position: absolute;
   right: 8rem;
   background-color: none;
-  color: #847e82;
+  color: #b1aaaf;
   transition: all 0.2s ease-in-out;
 }
 
