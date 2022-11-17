@@ -35,11 +35,18 @@ const fetchAndCreateGoodMorning = async () => {
     <div class="good-morning-card-body col-md-8">
       <div class="card-body">
         <h5 class="card-title">${dataArray[i].album.title}</h5>
+        
       </div>
     </div>
   </div>
+  <button class="green-player-btn-gm">
+                <svg id="gm-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+</svg>
+              </button>
 </div>
     </div>
+    
     `;
   }
 };
@@ -62,6 +69,11 @@ const fetchAndCreateRecentlyPlayed = async () => {
   <div class="recently-played-card-body card-body">
     <p class="card-text">${dataArray[i].album.title}</p>
   </div>
+    <button class="green-player-btn-rp">
+                <svg id="rp-play" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+</svg>
+              </button>
 </div>
     </div>
     `;
@@ -86,6 +98,11 @@ const fetchAndCreateShowsToTry = async () => {
   <div class="recently-played-card-body card-body">
     <p class="card-text">${dataArray[i].album.title}</p>
   </div>
+    <button class="green-player-btn-rp">
+                <svg id="rp-play" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+</svg>
+              </button>
 </div>
     </div>
     `;
