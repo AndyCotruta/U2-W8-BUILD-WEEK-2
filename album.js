@@ -78,7 +78,7 @@ function renderAlbum(data) {
     let seconds2 = Math.floor(Math.random() * (9 - 0)) + 0;
     i++;
     albumContainer.innerHTML += `    
-    <li class="music-list"  id="AlbumHover'>
+    <li class="music-list" onclick="artistHover()" id="AlbumHover'>
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <div class="mx-3">
@@ -151,14 +151,34 @@ const renderGradient = (image) => {
   };
 };
 
-let  ArtistHover = document.getElementById("AlbumHover");
-ArtistHover.onclick = function(){
-  alert("hih")
- 
 
+
+// let liHover = document.getElementById("AlbumHover")
+
+//  for (let i = 0; i < le.length; i++) {
+//   const element = array[i];
+  
+//  }
+
+// const ClickHover = document.querySelectorAll("#AlbumHover");
+// ClickHover.forEach((ul) => {
+//   ul.addEventListener("click", seatFunction, false);
+// });
+
+// function seatFunction() {
+//   alert("hihi")
+//   ClickHover.forEach((ul) => ul.classList.remove(".activeArtist"));
+//   this.classList.add(".activeArtist");
+// }
+
+const ClickHover = document.getElementById("#AlbumHover");
+function artistHover(){
+  // alert("hi")
+    ClickHover.style.background = 'red'
+  // ClickHover.classList.add('.activeArtist')
+  
 }
-
-
+// 
 
 // ..................Test function that actually works......................................//
 
