@@ -89,17 +89,23 @@ function renderAlbum(data) {
           <p class="info-list-paragraph">${i}</p>
         </div>
         <div>
-          <p class="info-title-paragraph">
+          <p class="info-title-paragraph rendered-song-title">
             <strong>${element.title}</strong>
           </p>
-          <p class="info-list-paragraph">${element.artist.name}</p>
+          <p class="info-list-paragraph rendered-artist-name">${element.artist.name}</p>
         </div>
+        <audio src="${element.preview}" id="audio"></audio>
       </div>
       <div class="">
         <p class="info-list-paragraph">${minutes}:${seconds1}${seconds2}</p>
       </div>
     </div>
   </li>`;
+    const audioArray = document.querySelectorAll("#audio");
+    const liArray = document.querySelectorAll(".music-list");
+    const titleArray = document.querySelectorAll(".rendered-song-title");
+    const artistArray = document.querySelectorAll(".rendered-artist-name");
+    playLiAudio(audioArray, liArray, titleArray, artistArray);
   });
 }
 
@@ -206,3 +212,18 @@ const loginBtn = document.querySelector(".navbar-login-btn");
 loginBtn.addEventListener("click", () => {
   window.location.assign("./login.html");
 });
+
+const playLiAudio = (audioArray, liArray, titleArray, artistArray) => {
+  liArray.forEach((li, index) => {
+    li.addEventListener("click", () => {
+      for (let i = 0; i < audioArray.length; i++) {
+        audioArray[i].pause();
+      }
+      audioArray[index].play();
+      const playerSongTitle = document.querySelector(".song-title");
+      playerSongTitle.innerText = titleArray[index].innerText;
+      const playerArtistName = document.querySelector(".song-artist");
+      playerArtistName.innerText = artistArray[index].innerText;
+    });
+  });
+};
