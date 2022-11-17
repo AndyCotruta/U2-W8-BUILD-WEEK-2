@@ -933,8 +933,7 @@ input::placeholder {
 
 /* Your Library */
 
-
-.btn_library{
+.btn_library {
   margin-inline: 20px;
   background: none;
   color: white;
@@ -943,18 +942,27 @@ input::placeholder {
   width: 120px;
   height: 40px;
 }
-.btn_library:hover{
+.btn_library:hover {
   font-size: 15;
   border-radius: 3px;
   background-color: rgb(49, 49, 49);
 }
 
-.libraryContentBox{
-  background-color: #8e8a8a;
+.libraryContentBox {
   color: white;
   padding: 3rem;
 }
-.libraryTittle{
+.libraryTittle {
   font-size: 2rem;
   font-weight: bolder;
+}
+.card-title-white {
+  color: rgb(211, 201, 201);
+}
+.libray-playslist-card {
+  background: linear-gradient(
+    0deg,
+    rgba(18, 18, 18, 1) 0%,
+    rgb(218, 27, 192) 100%
+  );
 }
