@@ -641,3 +641,41 @@ const skipRight = (
     }
   });
 };
+
+const yourLibrary = document.querySelector(".your-library");
+yourLibrary.addEventListener("click", () => {
+  console.log("Your Library was clicked");
+  console.log(localStorage.getItem("username"));
+  if (localStorage.getItem("username") == null) {
+    alert("Please Log In first to access this feature");
+  }
+});
+
+const likedSongs = document.querySelector(".liked-songs");
+likedSongs.addEventListener("click", () => {
+  console.log("Your Library was clicked");
+  console.log(localStorage.getItem("username"));
+  if (localStorage.getItem("username") == null) {
+    alert("Please Log In first to access this feature");
+  }
+});
+
+const aHeart = document.querySelector(".a-heart");
+aHeart.addEventListener("click", () => {
+  console.log("Your Library was clicked");
+  console.log(localStorage.getItem("username"));
+  if (localStorage.getItem("username") == null) {
+    alert("Please Log In first to access this feature");
+  } else {
+    const aHeart = document.querySelector(".a-heart");
+    aHeart.classList.add("d-none");
+    const aHeartColor = document.querySelector(".a-heart-color");
+    aHeartColor.classList.remove("d-none");
+  }
+});
+
+const aHeartColor = document.querySelector(".a-heart-color");
+aHeartColor.addEventListener("click", () => {
+  aHeartColor.classList.add("d-none");
+  aHeart.classList.remove("d-none");
+});
