@@ -935,10 +935,37 @@ input::placeholder {
 }
 
 .white-background {
-  background-color: #747171;
+  background-color: #2a2a2a;
+  border-radius: 3px;
+}
+
+.white-background-all {
+  background-color: #605a5e;
   border-radius: 3px;
 }
 
 .white-text {
   color: white;
+}
+
+.li-audio-controls {
+  z-index: 10;
+}
+
+.song-index-away {
+  display: none;
+}
+
+.now-playingPandB-btn {
+  font-size: 30px;
+}
+
+.global-pause-btn {
+  color: #1cdf63;
+  font-size: 45px;
+}
+
+.global-play-btn {
+  color: #1cdf63;
+  font-size: 45px;
 }
