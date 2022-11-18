@@ -1,5 +1,6 @@
 window.onload = () => {
   getUser();
+  console.log(currentIndex);
 };
 
 let parameters = new URLSearchParams(document.location.search); //searching for params in the navbar
@@ -277,6 +278,8 @@ const loginRedirect = () => {
   window.location.assign("./login.html");
 };
 
+let currentIndex;
+let currentAudioArray = [];
 const playLiAudio = (
   audioArray,
   liArray,
@@ -364,7 +367,9 @@ const playLiAudio = (
           artistArray[i].classList.remove("white-text");
         }
       }
-      console.log("Audio Array for liPlayButton: " + audioArray);
+      currentIndex = index;
+      console.log(currentIndex);
+      currentAudioArray = audioArray;
       audioArray[index].play();
       const globalPlayBtn = document.querySelector(".global-play-btn");
       globalPlayBtn.classList.add("d-none");
@@ -408,7 +413,6 @@ const playGlobal = (
 ) => {
   const globalPlayBtn = document.querySelector(".global-play-btn");
   globalPlayBtn.addEventListener("click", () => {
-    console.log("Audio Array for globalPlay: " + audioArray);
     globalPlayBtn.classList.add("d-none");
     const globalPauseBtn = document.querySelector(".global-pause-btn");
     globalPauseBtn.classList.remove("d-none");
@@ -416,17 +420,21 @@ const playGlobal = (
     nowPlayingPlayBtn.classList.add("d-none");
     const nowPlayingPauseBtn = document.querySelector(".pa-btn");
     nowPlayingPauseBtn.classList.remove("d-none");
-    audioArray[0].play();
-    liArray[0].classList.add("clicked");
-    liPlayBtn[0].classList.add("d-none");
-    liPauseBtn[0].classList.remove("d-none");
-    songNumberArray[0].classList.add("song-index-away");
+    if (currentIndex === undefined) {
+      currentIndex = 0;
+    }
+    audioArray[currentIndex].play();
+
+    liArray[currentIndex].classList.add("clicked");
+    liPlayBtn[currentIndex].classList.add("d-none");
+    liPauseBtn[currentIndex].classList.remove("d-none");
+    songNumberArray[currentIndex].classList.add("song-index-away");
     const playerSongTitle = document.querySelector(".song-title");
-    playerSongTitle.innerText = titleArray[0].innerText;
+    playerSongTitle.innerText = titleArray[currentIndex].innerText;
     const playerArtistName = document.querySelector(".song-artist");
-    playerArtistName.innerText = artistArray[0].innerText;
-    titleArray[0].classList.add("green-text");
-    liArray[0].classList.add("white-background-all");
+    playerArtistName.innerText = artistArray[currentIndex].innerText;
+    titleArray[currentIndex].classList.add("green-text");
+    liArray[currentIndex].classList.add("white-background-all");
   });
   pauseGlobal(
     audioArray,
@@ -487,19 +495,41 @@ const nowPlaying = (
     globalPlayBtn.classList.add("d-none");
     const globalPauseBtn = document.querySelector(".global-pause-btn");
     globalPauseBtn.classList.remove("d-none");
-
-    audioArray[0].play();
-    liArray[0].classList.add("clicked");
-    liPlayBtn[0].classList.add("d-none");
-    liPauseBtn[0].classList.remove("d-none");
-    songNumberArray[0].classList.add("song-index-away");
+    if (currentIndex === undefined) {
+      currentIndex = 0;
+    }
+    audioArray[currentIndex].play();
+    liArray[currentIndex].classList.add("clicked");
+    liPlayBtn[currentIndex].classList.add("d-none");
+    liPauseBtn[currentIndex].classList.remove("d-none");
+    songNumberArray[currentIndex].classList.add("song-index-away");
     const playerSongTitle = document.querySelector(".song-title");
-    playerSongTitle.innerText = titleArray[0].innerText;
+    playerSongTitle.innerText = titleArray[currentIndex].innerText;
     const playerArtistName = document.querySelector(".song-artist");
-    playerArtistName.innerText = artistArray[0].innerText;
-    titleArray[0].classList.add("green-text");
-    liArray[0].classList.add("white-background-all");
+    playerArtistName.innerText = artistArray[currentIndex].innerText;
+    titleArray[currentIndex].classList.add("green-text");
+    liArray[currentIndex].classList.add("white-background-all");
   });
+  skipLeft(
+    audioArray,
+    index,
+    liArray,
+    liPlayBtn,
+    liPauseBtn,
+    titleArray,
+    artistArray,
+    songNumberArray
+  );
+  skipRight(
+    audioArray,
+    index,
+    liArray,
+    liPlayBtn,
+    liPauseBtn,
+    titleArray,
+    artistArray,
+    songNumberArray
+  );
   nowPausing(
     audioArray,
     index,
@@ -536,5 +566,117 @@ const nowPausing = (
     songNumberArray[index].classList.remove("song-index-away");
     liArray[index].classList.remove("clicked");
     titleArray[index].classList.remove("green-text");
+  });
+};
+
+const skipLeft = (
+  audioArray,
+  index,
+  liArray,
+  liPlayBtn,
+  liPauseBtn,
+  titleArray,
+  artistArray,
+  songNumberArray
+) => {
+  const prevSongBtn = document.querySelector(".skip-left-button");
+  prevSongBtn.addEventListener("click", () => {
+    console.log("prevSongBtn clicked");
+    newcurrentIndex = currentIndex - 1;
+    for (let i = 0; i < audioArray.length; i++) {
+      audioArray[i].pause();
+    }
+
+    liArray[newcurrentIndex].classList.add("clicked");
+    liPlayBtn[newcurrentIndex].classList.add("d-none");
+    liPauseBtn[newcurrentIndex].classList.remove("d-none");
+    songNumberArray[newcurrentIndex].classList.add("song-index-away");
+    const playerSongTitle = document.querySelector(".song-title");
+    playerSongTitle.innerText = titleArray[newcurrentIndex].innerText;
+    const playerArtistName = document.querySelector(".song-artist");
+    playerArtistName.innerText = artistArray[newcurrentIndex].innerText;
+    titleArray[newcurrentIndex].classList.add("green-text");
+    liArray[newcurrentIndex].classList.add("white-background-all");
+    artistArray[newcurrentIndex].classList.add("white-text");
+    for (let i = 0; i < audioArray.length; i++) {
+      audioArray[i].pause();
+      if (i !== newcurrentIndex) {
+        liArray[i].classList.remove("white-background-all");
+        titleArray[i].classList.remove("green-text");
+        artistArray[i].classList.remove("white-text");
+      }
+      audioArray[newcurrentIndex].play();
+      liArray.forEach((li) => {
+        li.classList.remove("clicked");
+      });
+      liArray[newcurrentIndex].classList.add("clicked");
+
+      liPauseBtn.forEach((btn) => {
+        btn.classList.add("d-none");
+      });
+      liPauseBtn[newcurrentIndex].classList.remove("d-none");
+
+      songNumberArray.forEach((songNumber) => {
+        if (songNumber.classList.contains("song-index-away")) {
+          songNumber.classList.remove("song-index-away");
+        }
+      });
+    }
+  });
+};
+
+const skipRight = (
+  audioArray,
+  index,
+  liArray,
+  liPlayBtn,
+  liPauseBtn,
+  titleArray,
+  artistArray,
+  songNumberArray
+) => {
+  const nextSongBtn = document.querySelector(".skip-right-button");
+  nextSongBtn.addEventListener("click", () => {
+    console.log("nextSongBtn clicked");
+    newcurrentIndex = currentIndex + 1;
+    for (let i = 0; i < audioArray.length; i++) {
+      audioArray[i].pause();
+    }
+
+    liArray[newcurrentIndex].classList.add("clicked");
+    liPlayBtn[newcurrentIndex].classList.add("d-none");
+    liPauseBtn[newcurrentIndex].classList.remove("d-none");
+    songNumberArray[newcurrentIndex].classList.add("song-index-away");
+    const playerSongTitle = document.querySelector(".song-title");
+    playerSongTitle.innerText = titleArray[newcurrentIndex].innerText;
+    const playerArtistName = document.querySelector(".song-artist");
+    playerArtistName.innerText = artistArray[newcurrentIndex].innerText;
+    titleArray[newcurrentIndex].classList.add("green-text");
+    liArray[newcurrentIndex].classList.add("white-background-all");
+    artistArray[newcurrentIndex].classList.add("white-text");
+    for (let i = 0; i < audioArray.length; i++) {
+      audioArray[i].pause();
+      if (i !== newcurrentIndex) {
+        liArray[i].classList.remove("white-background-all");
+        titleArray[i].classList.remove("green-text");
+        artistArray[i].classList.remove("white-text");
+      }
+      audioArray[newcurrentIndex].play();
+      liArray.forEach((li) => {
+        li.classList.remove("clicked");
+      });
+      liArray[newcurrentIndex].classList.add("clicked");
+
+      liPauseBtn.forEach((btn) => {
+        btn.classList.add("d-none");
+      });
+      liPauseBtn[newcurrentIndex].classList.remove("d-none");
+
+      songNumberArray.forEach((songNumber) => {
+        if (songNumber.classList.contains("song-index-away")) {
+          songNumber.classList.remove("song-index-away");
+        }
+      });
+    }
   });
 };
