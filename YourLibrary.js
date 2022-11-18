@@ -17,6 +17,7 @@ async function getData(albumId) {
       console.log(data);
       console.log(data.title);
       displayAlbuns(data);
+      displayPodcast(data)
     })
     .catch((err) => console.error(err));
 }
@@ -41,3 +42,27 @@ async function displayPlaylists() {
     getData(albumId);
   }
 }
+
+  async function displayPodcast(datas){
+    // alert("hihi")
+    console.log(datas.title);
+     let contentPodcast = document.getElementById("card-boxx")
+     contentPodcast.innerHTML += `
+     <div class="card">
+  <img src="${datas.cover}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">${datas.title}</p>
+  </div>
+</div>
+     `
+  }
+  async function displayPod(){
+    let pods = ["8912", "68996", "340077"];
+       for (let m = 0; m < pods.length; m++) {
+        const element = pods[m];
+        console.log(element);
+         getData(element)
+        
+       }
+  }
+ 
