@@ -6,17 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
-    />
-    <link
-      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
       integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
-
-    <title>Spotify-Search</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+    <title>Document</title>
   </head>
   <body>
     <div class="main d-flex">
@@ -46,13 +45,8 @@
             </li></a
           >
 
-
           <a href="search.html"
             ><li class="d-flex align-items-center px-3">
-
-          <a href="artist.html"
-            ><li class="d-flex align-items-center selected px-3">
-
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -139,58 +133,56 @@
           <li class="px-3">Random Song</li>
         </ul>
       </div>
-      <div class="center-section-search flex-shrink-1">
+      <div class="center-section flex-shrink-1">
         <div class="center-nav-bar px-35 py-2">
           <div class="btns-prev-next">
             <img class="img-btn" src="img/prev.svg" alt="" />
 
             <img class="img-btn" src="img/next.svg" alt="" />
+            <button class="btn_library" id="btnPlaylist">
+              Playlist
+            </button>
+            <button class="btn_library" id="btnPodcast" >Podcast</button>
+            <button class="btn_library" id="btnArtist">Artist</button>
+            <button class="btn_library" id="btnAlbums">Albums</button>
           </div>
-          <div class="search-bar">
-            <div class="search-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-search"
-                viewbox="0 0 16 16"
-              >
-                <path
-                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-                />
-              </svg>
+
+          <div class="user-name-div d-flex text-white">
+            <div class="user-name-image px-1">
+              <i class="bi bi-person-circle"></i>
             </div>
-            <input
-              id="search-field"
-              type="text"
-              placeholder="What do you want to listen to?"
-            />
-          </div>
-          <div class="user-name-div text-white">
-            <span class="user-name-image px-1"
-              ><i class="bi bi-person-circle"></i
-            ></span>
-            <span class="user-name-text px-1">User Name</span>
-            <span class="px-1"
-              ><i class="dropdownBtn bi bi-caret-down-fill"></i
-            ></span>
+            <div class="user-name-text px-1">User Name</div>
+            <div class="px-1">
+              <i
+                class="dropdownBtn bi bi-caret-down-fill"
+                onclick="toggle()"
+              ></i>
+            </div>
           </div>
           <button class="btn d-none navbar-signup-btn">Sign Up</button>
-          <button class="btn d-none navbar-login-btn">Log In</button>
+          <button class="btn d-none navbar-login-btn" onclick="loginRedirect()">
+            Log In
+          </button>
           <ul class="dropMenu d-none">
             <li>Account</li>
             <li>Profile</li>
             <li>Upgrade to Premium</li>
             <li>Settings</li>
-            <li class="logout-btn">Log out</li>
+            <li class="logout-btn" onclick="logOut()">Log out</li>
           </ul>
         </div>
 
-        <div class="browse-all-section">
-          <h2 class="px-35">Browse All</h2>
-          <div class="browse-all row mx-1"></div>
+        <!-- ///////////LIBRARY PAGE CONTENT ///////////// -->
+        <div class="recently-played-section">
+          <h2 class="px-35" id="TitleLibrary">Playlist</h2>
+          <div id="card-box" class="recently-played row mx-1"></div>
         </div>
+
+
+      
+
+        
+
       </div>
     </div>
 
@@ -403,6 +395,8 @@
         </div>
       </div>
     </div>
+
+    <!-- BOOTSTRAP JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -413,6 +407,6 @@
       integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
       crossorigin="anonymous"
     ></script>
-    <script src="search.js"></script>
+    <script src="YourLibrary.js"></script>
   </body>
 </html>

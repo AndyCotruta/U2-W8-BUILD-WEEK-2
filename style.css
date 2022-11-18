@@ -1,11 +1,12 @@
 /* ___________________________________________________________________ */
 /* Style for homepage center section */
 .center-section {
-  background: linear-gradient(
+  /* background: linear-gradient(
     0deg,
     rgba(18, 18, 18, 1) 0%,
     rgba(61, 9, 7, 1) 100%
-  );
+  ); */
+  background-color: rgb(20, 19, 19);
   overflow: auto;
 }
 
@@ -430,7 +431,7 @@ input::placeholder {
 .center-section {
   width: 85%;
   height: 88vh;
-  background-color: bisque;
+  /* background-color: bisque; */
 }
 
 .wrapper1 {
@@ -930,6 +931,10 @@ input::placeholder {
   font-size: 6rem;
 }
 
+
+
+
+
 .green-text {
   color: #47b850;
 }
@@ -984,3 +989,4 @@ input::placeholder {
 .a-heart {
   font-size: 24px;
 }
+
