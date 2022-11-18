@@ -1,5 +1,6 @@
 window.onload = () => {
   getUser();
+  console.log(currentIndex);
 };
 
 let params = new URLSearchParams(document.location.search); //searching for params in the navbar
@@ -83,24 +84,54 @@ function renderAlbum(data) {
     i++;
     albumContainer.innerHTML += `    
     <li class="music-list">
+ 
     <div class="d-flex justify-content-between">
       <div class="d-flex align-items-center">
-        <div class="mx-3">
-          <p class="info-list-paragraph">${i}</p>
+        <div class="d-flex mx-3">
+          <p class="info-list-paragraph song-number">${i}</p>
+              <i class="li-audio-controls d-none bi bi-play-fill li-pl-btn"></i>
+              <i class="li-audio-controls d-none bi bi-pause-fill li-pa-btn"></i>
         </div>
+       
         <div>
-          <p class="info-title-paragraph">
+          <p class="info-title-paragraph rendered-song-title">
             <strong>${element.title}</strong>
           </p>
-          <p class="info-list-paragraph">${element.artist.name}</p>
+          <p class="info-list-paragraph rendered-artist-name">${element.artist.name}</p>
         </div>
+        <audio src="${element.preview}" id="audio"></audio>
       </div>
-      <div class="">
-        <p class="info-list-paragraph">${minutes}:${seconds1}${seconds2}</p>
+      <div class="d-flex">
+      <i class="bi bi-heart d-flex align-items-center hidden px-2"></i>
+        <p class="info-list-paragraph d-flex align-items-center px-2">${minutes}:${seconds1}${seconds2}</p>
+        <i class="bi bi-three-dots d-flex align-items-center hidden px-2"></i>
       </div>
     </div>
   </li>`;
   });
+  const audioArray = document.querySelectorAll("#audio");
+  const liArray = document.querySelectorAll(".music-list");
+  const titleArray = document.querySelectorAll(".rendered-song-title");
+  const artistArray = document.querySelectorAll(".rendered-artist-name");
+  const songNumberArray = document.querySelectorAll(".song-number");
+  const audioControlsArray = document.querySelectorAll(".li-audio-controls");
+  const liPlayBtn = document.querySelectorAll(".li-pl-btn");
+  const liPauseBtn = document.querySelectorAll(".li-pa-btn");
+  const liHeart = document.querySelectorAll(".bi-heart");
+  const liDots = document.querySelectorAll(".bi-three-dots");
+
+  playLiAudio(
+    audioArray,
+    liArray,
+    titleArray,
+    artistArray,
+    songNumberArray,
+    audioControlsArray,
+    liPlayBtn,
+    liPauseBtn,
+    liHeart,
+    liDots
+  );
 }
 
 const goToArtist = (artistId) => {
@@ -205,4 +236,446 @@ logoutBtn.addEventListener("click", () => {
 const loginBtn = document.querySelector(".navbar-login-btn");
 loginBtn.addEventListener("click", () => {
   window.location.assign("./login.html");
+});
+
+let currentIndex;
+const playLiAudio = (
+  audioArray,
+  liArray,
+  titleArray,
+  artistArray,
+  songNumberArray,
+  audioControlsArray,
+  liPlayBtn,
+  liPauseBtn,
+  liHeart,
+  liDots
+) => {
+  liArray.forEach((li, index) => {
+    playGlobal(
+      audioArray,
+      index,
+      liArray,
+      liPlayBtn,
+      liPauseBtn,
+      titleArray,
+      artistArray,
+      songNumberArray
+    );
+    nowPlaying(
+      audioArray,
+      index,
+      liArray,
+      liPlayBtn,
+      liPauseBtn,
+      titleArray,
+      artistArray,
+      songNumberArray
+    );
+    li.addEventListener("mouseover", () => {
+      if (!liArray[index].classList.contains("clicked")) {
+        liArray[index].classList.add("white-background");
+        liPlayBtn[index].classList.remove("d-none");
+        liHeart[index + 1].classList.remove("hidden");
+        liDots[index + 1].classList.remove("hidden");
+        songNumberArray[index].classList.add("d-none");
+        for (let i = 0; i < liArray.length; i++) {
+          if (i !== index) {
+            liArray[i].classList.remove("white-background");
+            liPlayBtn[i].classList.add("d-none");
+            liHeart[i + 1].classList.add("hidden");
+            liDots[i + 1].classList.add("hidden");
+            songNumberArray[i].classList.remove("d-none");
+          }
+        }
+      }
+    });
+
+    liPlayBtn[index].addEventListener("click", () => {
+      liArray.forEach((li) => {
+        li.classList.remove("clicked");
+      });
+
+      liPauseBtn.forEach((btn) => {
+        btn.classList.add("d-none");
+      });
+      songNumberArray.forEach((songNumber) => {
+        if (songNumber.classList.contains("song-index-away")) {
+          songNumber.classList.remove("song-index-away");
+        }
+      });
+
+      liArray[index].classList.add("clicked");
+      liPlayBtn[index].classList.add("d-none");
+      liPauseBtn[index].classList.remove("d-none");
+      songNumberArray[index].classList.add("song-index-away");
+
+      const playerSongTitle = document.querySelector(".song-title");
+      playerSongTitle.innerText = titleArray[index].innerText;
+
+      const playerArtistName = document.querySelector(".song-artist");
+      playerArtistName.innerText = artistArray[index].innerText;
+      liArray[index].classList.add("white-background-all");
+      titleArray[index].classList.add("green-text");
+      artistArray[index].classList.add("white-text");
+      for (let i = 0; i < audioArray.length; i++) {
+        audioArray[i].pause();
+        if (i !== index) {
+          liArray[i].classList.remove("white-background-all");
+          titleArray[i].classList.remove("green-text");
+          artistArray[i].classList.remove("white-text");
+        }
+      }
+
+      currentIndex = index;
+      console.log(currentIndex);
+      audioArray[index].play();
+
+      const globalPlayBtn = document.querySelector(".global-play-btn");
+      globalPlayBtn.classList.add("d-none");
+      const globalPauseBtn = document.querySelector(".global-pause-btn");
+      globalPauseBtn.classList.remove("d-none");
+
+      const nowPlayingPlayBtn = document.querySelector(".pl-btn");
+      nowPlayingPlayBtn.classList.add("d-none");
+      const nowPlayingPauseBtn = document.querySelector(".pa-btn");
+      nowPlayingPauseBtn.classList.remove("d-none");
+    });
+
+    liPauseBtn[index].addEventListener("click", () => {
+      console.log("Audio Array for liPauseButton: " + audioArray);
+      audioArray[index].pause();
+      liPauseBtn[index].classList.add("d-none");
+      liPlayBtn[index + 1].classList.remove("d-none");
+      songNumberArray[index].classList.remove("song-index-away");
+      liArray[index].classList.remove("clicked");
+      const globalPlayBtn = document.querySelector(".global-play-btn");
+      globalPlayBtn.classList.remove("d-none");
+      const globalPauseBtn = document.querySelector(".global-pause-btn");
+      globalPauseBtn.classList.add("d-none");
+      const nowPlayingPlayBtn = document.querySelector(".pl-btn");
+      nowPlayingPlayBtn.classList.remove("d-none");
+      const nowPlayingPauseBtn = document.querySelector(".pa-btn");
+      nowPlayingPauseBtn.classList.add("d-none");
+    });
+  });
+};
+
+const playGlobal = (
+  audioArray,
+  index,
+  liArray,
+  liPlayBtn,
+  liPauseBtn,
+  titleArray,
+  artistArray,
+  songNumberArray
+) => {
+  const globalPlayBtn = document.querySelector(".global-play-btn");
+  globalPlayBtn.addEventListener("click", () => {
+    console.log("Audio Array for globalPlay: " + audioArray);
+    globalPlayBtn.classList.add("d-none");
+    const globalPauseBtn = document.querySelector(".global-pause-btn");
+    globalPauseBtn.classList.remove("d-none");
+    const nowPlayingPlayBtn = document.querySelector(".pl-btn");
+    nowPlayingPlayBtn.classList.add("d-none");
+    const nowPlayingPauseBtn = document.querySelector(".pa-btn");
+    nowPlayingPauseBtn.classList.remove("d-none");
+    if (currentIndex === undefined) {
+      currentIndex = 0;
+    }
+    audioArray[currentIndex].play();
+    liArray[currentIndex].classList.add("clicked");
+    liPlayBtn[currentIndex].classList.add("d-none");
+    liPauseBtn[currentIndex].classList.remove("d-none");
+    songNumberArray[currentIndex].classList.add("song-index-away");
+    const playerSongTitle = document.querySelector(".song-title");
+    playerSongTitle.innerText = titleArray[currentIndex].innerText;
+    const playerArtistName = document.querySelector(".song-artist");
+    playerArtistName.innerText = artistArray[currentIndex].innerText;
+    titleArray[currentIndex].classList.add("green-text");
+    liArray[currentIndex].classList.add("white-background-all");
+  });
+  pauseGlobal(
+    audioArray,
+    index,
+    liArray,
+    liPlayBtn,
+    liPauseBtn,
+    titleArray,
+    artistArray,
+    songNumberArray
+  );
+};
+
+const pauseGlobal = (
+  audioArray,
+  index,
+  liArray,
+  liPlayBtn,
+  liPauseBtn,
+  titleArray,
+  artistArray,
+  songNumberArray
+) => {
+  const globalPauseBtn = document.querySelector(".global-pause-btn");
+  globalPauseBtn.addEventListener("click", () => {
+    console.log("The Pause Button was pressed");
+    globalPauseBtn.classList.add("d-none");
+    const globalPlayBtn = document.querySelector(".global-play-btn");
+    globalPlayBtn.classList.remove("d-none");
+    const nowPlayingPlayBtn = document.querySelector(".pl-btn");
+    nowPlayingPlayBtn.classList.remove("d-none");
+    const nowPlayingPauseBtn = document.querySelector(".pa-btn");
+    nowPlayingPauseBtn.classList.add("d-none");
+    audioArray[index].pause();
+    liPauseBtn[index].classList.add("d-none");
+    songNumberArray[index].classList.remove("song-index-away");
+    liArray[index].classList.remove("clicked");
+    titleArray[index].classList.remove("green-text");
+  });
+};
+
+const nowPlaying = (
+  audioArray,
+  index,
+  liArray,
+  liPlayBtn,
+  liPauseBtn,
+  titleArray,
+  artistArray,
+  songNumberArray
+) => {
+  const nowPlayingPlayBtn = document.querySelector(".pl-btn");
+  nowPlayingPlayBtn.addEventListener("click", () => {
+    console.log(currentIndex);
+    nowPlayingPlayBtn.classList.add("d-none");
+    const nowPlayingPauseBtn = document.querySelector(".pa-btn");
+    nowPlayingPauseBtn.classList.remove("d-none");
+    const globalPlayBtn = document.querySelector(".global-play-btn");
+    globalPlayBtn.classList.add("d-none");
+    const globalPauseBtn = document.querySelector(".global-pause-btn");
+    globalPauseBtn.classList.remove("d-none");
+    if (currentIndex === undefined) {
+      currentIndex = 0;
+    }
+    audioArray[currentIndex].play();
+    liArray[currentIndex].classList.add("clicked");
+    liPlayBtn[currentIndex].classList.add("d-none");
+    liPauseBtn[currentIndex].classList.remove("d-none");
+    songNumberArray[currentIndex].classList.add("song-index-away");
+    const playerSongTitle = document.querySelector(".song-title");
+    playerSongTitle.innerText = titleArray[currentIndex].innerText;
+    const playerArtistName = document.querySelector(".song-artist");
+    playerArtistName.innerText = artistArray[currentIndex].innerText;
+    titleArray[currentIndex].classList.add("green-text");
+    liArray[currentIndex].classList.add("white-background-all");
+  });
+  skipLeft(
+    audioArray,
+    index,
+    liArray,
+    liPlayBtn,
+    liPauseBtn,
+    titleArray,
+    artistArray,
+    songNumberArray
+  );
+  skipRight(
+    audioArray,
+    index,
+    liArray,
+    liPlayBtn,
+    liPauseBtn,
+    titleArray,
+    artistArray,
+    songNumberArray
+  );
+  nowPausing(
+    audioArray,
+    index,
+    liArray,
+    liPlayBtn,
+    liPauseBtn,
+    titleArray,
+    artistArray,
+    songNumberArray
+  );
+};
+
+const nowPausing = (
+  audioArray,
+  index,
+  liArray,
+  liPlayBtn,
+  liPauseBtn,
+  titleArray,
+  artistArray,
+  songNumberArray
+) => {
+  const nowPlayingPauseBtn = document.querySelector(".pa-btn");
+  nowPlayingPauseBtn.addEventListener("click", () => {
+    nowPlayingPauseBtn.classList.add("d-none");
+    const nowPlayingPlayBtn = document.querySelector(".pl-btn");
+    nowPlayingPlayBtn.classList.remove("d-none");
+    const globalPlayBtn = document.querySelector(".global-play-btn");
+    globalPlayBtn.classList.remove("d-none");
+    const globalPauseBtn = document.querySelector(".global-pause-btn");
+    globalPauseBtn.classList.add("d-none");
+    audioArray[index].pause();
+    liPauseBtn[index].classList.add("d-none");
+    songNumberArray[index].classList.remove("song-index-away");
+    liArray[index].classList.remove("clicked");
+    titleArray[index].classList.remove("green-text");
+  });
+};
+
+const skipLeft = (
+  audioArray,
+  index,
+  liArray,
+  liPlayBtn,
+  liPauseBtn,
+  titleArray,
+  artistArray,
+  songNumberArray
+) => {
+  const prevSongBtn = document.querySelector(".skip-left-button");
+  prevSongBtn.addEventListener("click", () => {
+    console.log("prevSongBtn clicked");
+    newcurrentIndex = currentIndex - 1;
+    for (let i = 0; i < audioArray.length; i++) {
+      audioArray[i].pause();
+    }
+
+    liArray[newcurrentIndex].classList.add("clicked");
+    liPlayBtn[newcurrentIndex].classList.add("d-none");
+    liPauseBtn[newcurrentIndex].classList.remove("d-none");
+    songNumberArray[newcurrentIndex].classList.add("song-index-away");
+    const playerSongTitle = document.querySelector(".song-title");
+    playerSongTitle.innerText = titleArray[newcurrentIndex].innerText;
+    const playerArtistName = document.querySelector(".song-artist");
+    playerArtistName.innerText = artistArray[newcurrentIndex].innerText;
+    titleArray[newcurrentIndex].classList.add("green-text");
+    liArray[newcurrentIndex].classList.add("white-background-all");
+    artistArray[newcurrentIndex].classList.add("white-text");
+    for (let i = 0; i < audioArray.length; i++) {
+      audioArray[i].pause();
+      if (i !== newcurrentIndex) {
+        liArray[i].classList.remove("white-background-all");
+        titleArray[i].classList.remove("green-text");
+        artistArray[i].classList.remove("white-text");
+      }
+      audioArray[newcurrentIndex].play();
+      liArray.forEach((li) => {
+        li.classList.remove("clicked");
+      });
+      liArray[newcurrentIndex].classList.add("clicked");
+
+      liPauseBtn.forEach((btn) => {
+        btn.classList.add("d-none");
+      });
+      liPauseBtn[newcurrentIndex].classList.remove("d-none");
+
+      songNumberArray.forEach((songNumber) => {
+        if (songNumber.classList.contains("song-index-away")) {
+          songNumber.classList.remove("song-index-away");
+        }
+      });
+    }
+  });
+};
+
+const skipRight = (
+  audioArray,
+  index,
+  liArray,
+  liPlayBtn,
+  liPauseBtn,
+  titleArray,
+  artistArray,
+  songNumberArray
+) => {
+  const nextSongBtn = document.querySelector(".skip-right-button");
+  nextSongBtn.addEventListener("click", () => {
+    console.log("nextSongBtn clicked");
+    newcurrentIndex = currentIndex + 1;
+    for (let i = 0; i < audioArray.length; i++) {
+      audioArray[i].pause();
+    }
+
+    liArray[newcurrentIndex].classList.add("clicked");
+    liPlayBtn[newcurrentIndex].classList.add("d-none");
+    liPauseBtn[newcurrentIndex].classList.remove("d-none");
+    songNumberArray[newcurrentIndex].classList.add("song-index-away");
+    const playerSongTitle = document.querySelector(".song-title");
+    playerSongTitle.innerText = titleArray[newcurrentIndex].innerText;
+    const playerArtistName = document.querySelector(".song-artist");
+    playerArtistName.innerText = artistArray[newcurrentIndex].innerText;
+    titleArray[newcurrentIndex].classList.add("green-text");
+    liArray[newcurrentIndex].classList.add("white-background-all");
+    artistArray[newcurrentIndex].classList.add("white-text");
+    for (let i = 0; i < audioArray.length; i++) {
+      audioArray[i].pause();
+      if (i !== newcurrentIndex) {
+        liArray[i].classList.remove("white-background-all");
+        titleArray[i].classList.remove("green-text");
+        artistArray[i].classList.remove("white-text");
+      }
+      audioArray[newcurrentIndex].play();
+      liArray.forEach((li) => {
+        li.classList.remove("clicked");
+      });
+      liArray[newcurrentIndex].classList.add("clicked");
+
+      liPauseBtn.forEach((btn) => {
+        btn.classList.add("d-none");
+      });
+      liPauseBtn[newcurrentIndex].classList.remove("d-none");
+
+      songNumberArray.forEach((songNumber) => {
+        if (songNumber.classList.contains("song-index-away")) {
+          songNumber.classList.remove("song-index-away");
+        }
+      });
+    }
+  });
+};
+
+const yourLibrary = document.querySelector(".your-library");
+yourLibrary.addEventListener("click", () => {
+  console.log("Your Library was clicked");
+  console.log(localStorage.getItem("username"));
+  if (localStorage.getItem("username") == null) {
+    alert("Please Log In first to access this feature");
+  }
+});
+
+const likedSongs = document.querySelector(".liked-songs");
+likedSongs.addEventListener("click", () => {
+  console.log("Your Library was clicked");
+  console.log(localStorage.getItem("username"));
+  if (localStorage.getItem("username") == null) {
+    alert("Please Log In first to access this feature");
+  }
+});
+
+const aHeart = document.querySelector(".a-heart");
+aHeart.addEventListener("click", () => {
+  console.log("Your Library was clicked");
+  console.log(localStorage.getItem("username"));
+  if (localStorage.getItem("username") == null) {
+    alert("Please Log In first to access this feature");
+  } else {
+    const aHeart = document.querySelector(".a-heart");
+    aHeart.classList.add("d-none");
+    const aHeartColor = document.querySelector(".a-heart-color");
+    aHeartColor.classList.remove("d-none");
+  }
+});
+
+const aHeartColor = document.querySelector(".a-heart-color");
+aHeartColor.addEventListener("click", () => {
+  aHeartColor.classList.add("d-none");
+  aHeart.classList.remove("d-none");
 });

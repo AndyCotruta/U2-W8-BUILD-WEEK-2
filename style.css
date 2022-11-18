@@ -931,40 +931,62 @@ input::placeholder {
   font-size: 6rem;
 }
 
-/* Your Library */
 
-.btn_library {
-  margin-inline: 20px;
-  background: none;
-  color: white;
-  border: none;
-  font-size: 17px;
-  width: 120px;
-  height: 40px;
+
+
+
+.green-text {
+  color: #47b850;
 }
-.btn_library:hover {
-  font-size: 15;
+
+.white-background {
+  background-color: #2a2a2a;
   border-radius: 3px;
-  background-color: rgb(49, 49, 49);
 }
 
-/* .libraryContentBox {
+.white-background-all {
+  background-color: #605a5e;
+  border-radius: 3px;
+}
+
+.white-text {
   color: white;
-  padding: 3rem;
-}
-.libraryTittle {
-  font-size: 2rem;
-  font-weight: bolder;
-} */
-.card-title-white {
-  color: rgb(211, 201, 201);
-}
-.libray-playslist-card {
-  background: linear-gradient(
-    0deg,
-    rgba(18, 18, 18, 1) 0%,
-    rgb(218, 27, 192) 100%
-  );
 }
 
+.li-audio-controls {
+  z-index: 10;
+}
+
+.song-index-away {
+  display: none;
+}
+
+.now-playingPandB-btn {
+  font-size: 30px;
+}
+
+.global-pause-btn {
+  color: #1cdf63;
+  font-size: 45px;
+}
+
+.global-play-btn {
+  color: #1cdf63;
+  font-size: 45px;
+}
+
+.your-library:hover,
+.liked-songs:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.a-heart-color {
+  font-size: 24px;
+  color: #1cdf63;
+}
+
+.a-heart {
+  font-size: 24px;
+}
 
