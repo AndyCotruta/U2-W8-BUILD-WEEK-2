@@ -139,12 +139,12 @@
             <img class="img-btn" src="img/prev.svg" alt="" />
 
             <img class="img-btn" src="img/next.svg" alt="" />
-            <button class="btn_library" onclick="displayPlaylists()">
+            <button class="btn_library" id="btnPlaylist">
               Playlist
             </button>
-            <button class="btn_library" onclick="displayPod()">Podcast</button>
-            <button class="btn_library">Artist</button>
-            <button class="btn_library">Albums</button>
+            <button class="btn_library" id="btnPodcast" >Podcast</button>
+            <button class="btn_library" id="btnArtist">Artist</button>
+            <button class="btn_library" id="btnAlbums">Albums</button>
           </div>
 
           <div class="user-name-div d-flex text-white">
@@ -173,33 +173,15 @@
         </div>
 
         <!-- ///////////LIBRARY PAGE CONTENT ///////////// -->
-        <div class="libraryContentBox">
-          <!-- ///////////TITLE LIBRARY PAGE ///////////// -->
-          <div class="libraryTittle">
-            <p>Playlists</p>
-          </div>
-          <!-- ///////////LIBRARY PAGE CARDS ///////////// -->
-          <div
-            id="card-box"
-            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"
-          ></div>
-
-
+        <div class="recently-played-section">
+          <h2 class="px-35" id="TitleLibrary">Playlist</h2>
+          <div id="card-box" class="recently-played row mx-1"></div>
         </div>
 
-        <div class="libraryContentBox">
-          <!-- ///////////TITLE LIBRARY PAGE ///////////// -->
-          <div class="libraryTittle">
-            <p>Podcasts</p>
-          </div>
-          <!-- ///////////LIBRARY PAGE CARDS ///////////// -->
-          <div
-            id="card-box"
-            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"
-          ></div>
 
+      
 
-        </div>
+        
 
       </div>
     </div>

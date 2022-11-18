@@ -948,14 +948,14 @@ input::placeholder {
   background-color: rgb(49, 49, 49);
 }
 
-.libraryContentBox {
+/* .libraryContentBox {
   color: white;
   padding: 3rem;
 }
 .libraryTittle {
   font-size: 2rem;
   font-weight: bolder;
-}
+} */
 .card-title-white {
   color: rgb(211, 201, 201);
 }
@@ -966,3 +966,5 @@ input::placeholder {
     rgb(218, 27, 192) 100%
   );
 }
+
+
