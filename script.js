@@ -148,6 +148,7 @@ logoutBtn.addEventListener("click", () => {
   const dropdownMenu = document.querySelector(".dropMenu");
   dropdownMenu.classList.add("d-none");
   localStorage.clear();
+  window.location.assign("./homepage.html");
 });
 
 const loginBtn = document.querySelector(".navbar-login-btn");
@@ -165,6 +166,8 @@ yourLibrary.addEventListener("click", () => {
   console.log(localStorage.getItem("username"));
   if (localStorage.getItem("username") == null) {
     alert("Please Log In first to access this feature");
+  } else {
+    window.location.assign("./YourLibrary.html");
   }
 });
 

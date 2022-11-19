@@ -231,6 +231,7 @@ logoutBtn.addEventListener("click", () => {
   const dropdownMenu = document.querySelector(".dropMenu");
   dropdownMenu.classList.add("d-none");
   localStorage.clear();
+  window.location.assign("./homepage.html");
 });
 
 const loginBtn = document.querySelector(".navbar-login-btn");

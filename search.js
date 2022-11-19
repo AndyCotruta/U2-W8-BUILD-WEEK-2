@@ -154,9 +154,30 @@ logoutBtn.addEventListener("click", () => {
   const dropdownMenu = document.querySelector(".dropMenu");
   dropdownMenu.classList.add("d-none");
   localStorage.clear();
+  window.location.assign("./homepage.html");
 });
 
 const loginBtn = document.querySelector(".navbar-login-btn");
 loginBtn.addEventListener("click", () => {
   window.location.assign("./login.html");
+});
+
+const yourLibrary = document.querySelector(".your-library");
+yourLibrary.addEventListener("click", () => {
+  console.log("Your Library was clicked");
+  console.log(localStorage.getItem("username"));
+  if (localStorage.getItem("username") == null) {
+    alert("Please Log In first to access this feature");
+  } else {
+    window.location.assign("./YourLibrary.html");
+  }
+});
+
+const likedSongs = document.querySelector(".liked-songs");
+likedSongs.addEventListener("click", () => {
+  console.log("Your Library was clicked");
+  console.log(localStorage.getItem("username"));
+  if (localStorage.getItem("username") == null) {
+    alert("Please Log In first to access this feature");
+  }
 });
