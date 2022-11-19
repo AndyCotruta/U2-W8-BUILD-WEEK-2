@@ -27,7 +27,14 @@
       /></a>
     </div>
     <div class="login-container d-flex flex-column align-items-center mt-2">
-      <div class="mb-2">To continue, login to Spotify.</div>
+      <div class="to-continue">
+        <div class="mb-2">To continue, login to Spotify.</div>
+        <div class="mb-2 incorrect-login d-none">
+          <span class="exclamation d-flex align-items-center px-3"
+            ><i class="bi bi-exclamation-circle"></i></span
+          >Incorrect Username or Password
+        </div>
+      </div>
       <button class="continue-btn btn-facebook mb-2">
         <div class="facebook-logo d-flex align-items-center px-3">
           <svg

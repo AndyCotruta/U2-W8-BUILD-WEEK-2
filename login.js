@@ -10,5 +10,10 @@ loginBtn.addEventListener("click", () => {
   const passwordValue = passwordInput.value;
   localStorage.setItem("password", passwordValue);
   console.log(localStorage);
-  window.location.assign("./homepage.html");
+  if (usernameInput.value === "") {
+    const incorrectLogin = document.querySelector(".incorrect-login");
+    incorrectLogin.classList.remove("d-none");
+  } else {
+    window.location.assign("./homepage.html");
+  }
 });
