@@ -131,7 +131,6 @@ const getUser = () => {
 };
 
 const dropdownBtn = document.querySelector(".dropdownBtn");
-console.log(dropdownBtn);
 dropdownBtn.addEventListener("click", () => {
   const dropdownMenu = document.querySelector(".dropMenu");
   dropdownMenu.classList.toggle("d-none");
@@ -161,7 +160,64 @@ yourLibrary.addEventListener("click", () => {
   console.log("Your Library was clicked");
   console.log(localStorage.getItem("username"));
   if (localStorage.getItem("username") == null) {
-    alert("Please Log In first to access this feature");
+    const alertWindowPlaylist = document.querySelector(
+      ".no-user-leftNavbar-alert-playlist"
+    );
+    alertWindowPlaylist.classList.add("hidden");
+    const alertWindowLikedSongs = document.querySelector(
+      ".no-user-leftNavbar-alert-likedSongs"
+    );
+    alertWindowLikedSongs.classList.add("hidden");
+    const alertWindowLibrary = document.querySelector(
+      ".no-user-leftNavbar-alert"
+    );
+    alertWindowLibrary.classList.remove("hidden");
+    const notNowBtn = document.querySelector(".alert-notNow-btn");
+
+    notNowBtn.addEventListener("click", () => {
+      const alertWindowLibrary = document.querySelector(
+        ".no-user-leftNavbar-alert"
+      );
+      alertWindowLibrary.classList.add("hidden");
+    });
+    const logInBtn = document.querySelector(".alert-logIn-btn");
+    logInBtn.addEventListener("click", () => {
+      window.location.assign("./login.html");
+    });
+  } else {
+    window.location.assign("./YourLibrary.html");
+  }
+});
+
+const createPlaylist = document.querySelector(".create-playlist");
+createPlaylist.addEventListener("click", () => {
+  console.log("Create Playlist was clicked");
+  console.log(localStorage.getItem("username"));
+  if (localStorage.getItem("username") == null) {
+    const alertWindowLibrary = document.querySelector(
+      ".no-user-leftNavbar-alert"
+    );
+    alertWindowLibrary.classList.add("hidden");
+    const alertWindowLikedSongs = document.querySelector(
+      ".no-user-leftNavbar-alert-likedSongs"
+    );
+    alertWindowLikedSongs.classList.add("hidden");
+    const alertWindowPlaylist = document.querySelector(
+      ".no-user-leftNavbar-alert-playlist"
+    );
+    alertWindowPlaylist.classList.remove("hidden");
+    const notNowBtn = document.querySelector(".notNow-playlist");
+
+    notNowBtn.addEventListener("click", () => {
+      const alertWindowPlaylist = document.querySelector(
+        ".no-user-leftNavbar-alert-playlist"
+      );
+      alertWindowPlaylist.classList.add("hidden");
+    });
+    const logInBtn = document.querySelector(".logIn-playlist");
+    logInBtn.addEventListener("click", () => {
+      window.location.assign("./login.html");
+    });
   } else {
     window.location.assign("./YourLibrary.html");
   }
@@ -169,10 +225,35 @@ yourLibrary.addEventListener("click", () => {
 
 const likedSongs = document.querySelector(".liked-songs");
 likedSongs.addEventListener("click", () => {
-  console.log("Your Library was clicked");
+  console.log("Liked Songs was clicked");
   console.log(localStorage.getItem("username"));
   if (localStorage.getItem("username") == null) {
-    alert("Please Log In first to access this feature");
+    const alertWindowLibrary = document.querySelector(
+      ".no-user-leftNavbar-alert"
+    );
+    alertWindowLibrary.classList.add("hidden");
+    const alertWindowPlaylist = document.querySelector(
+      ".no-user-leftNavbar-alert-playlist"
+    );
+    alertWindowPlaylist.classList.add("hidden");
+    const alertWindowLikedSongs = document.querySelector(
+      ".no-user-leftNavbar-alert-likedSongs"
+    );
+    alertWindowLikedSongs.classList.remove("hidden");
+    const notNowBtn = document.querySelector(".notNow-likedSongs");
+
+    notNowBtn.addEventListener("click", () => {
+      const alertWindowLikedSongs = document.querySelector(
+        ".no-user-leftNavbar-alert-likedSongs"
+      );
+      alertWindowLikedSongs.classList.add("hidden");
+    });
+    const logInBtn = document.querySelector(".logIn-playlist");
+    logInBtn.addEventListener("click", () => {
+      window.location.assign("./login.html");
+    });
+  } else {
+    window.location.assign("./LikedSongs.html");
   }
 });
 
@@ -182,7 +263,7 @@ if (localStorage.getItem("username") == null) {
   <div class = "logIn-banner w-100 d-flex justify-content-between px-3">
     <div class="logIn-banner-text text-white d-flex flex-column justify-content-center px-3">
       <div>PREVIEW OF SPOTIFY</div>
-      <div>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</div>
+      <div>Log In to get unlimited songs and podcasts with occasional ads. No credit card needed.</div>
   </div>
   <button class="btn logIn-btn-banner">Log In</button>
   </div>`;

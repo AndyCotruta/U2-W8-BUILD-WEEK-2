@@ -29,7 +29,7 @@
         </div>
         <ul class="nav-pages py-2">
           <a href="homepage.html">
-            <li class="d-flex align-items-center px-3">
+            <li class="d-flex align-items-center px-3 selected">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -62,31 +62,6 @@
             </li></a
           >
 
-          <a href="YourLibrary.html"
-            ><li class="d-flex align-items-center px-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-music-note-list"
-                viewbox="0 0 16 16"
-              >
-                <path
-                  d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"
-                />
-                <path fill-rule="evenodd" d="M12 3v10h-1V3h1z" />
-                <path
-                  d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"
-                /></svg
-              ><span class="nav-page-text px-2">Your library</span>
-            </li></a
-          >
-
           <li class="d-flex align-items-center your-library px-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -109,25 +84,98 @@
               /></svg
             ><span class="nav-page-text px-2">Your library</span>
           </li>
+          <div
+            class="no-user-leftNavbar-alert hidden d-flex flex-column justify-content-between"
+          >
+            <div class="leftNavbar-alert-arrow">
+              <i class="bi bi-play-fill"></i>
+            </div>
+            <div>
+              <h5>Enjoy Your Library</h5>
+              <div class="mt-3 fs-14">
+                Log In to see saved songs, podcasts, artists, and playlists in
+                Your Library.
+              </div>
+            </div>
 
+            <div class="alert-btns d-flex justify-content-end">
+              <button
+                class="alert-btn alert-notNow-btn text-white fs-14 fw-b mx-2"
+              >
+                Not Now
+              </button>
+              <button class="btn alert-btn alert-logIn-btn fs-14 mx-2">
+                Log In
+              </button>
+            </div>
+          </div>
+          <div
+            class="no-user-leftNavbar-alert-playlist hidden d-flex flex-column justify-content-between"
+          >
+            <div class="leftNavbar-alert-arrow">
+              <i class="bi bi-play-fill"></i>
+            </div>
+            <div>
+              <h5>Create a Playlist</h5>
+              <div class="mt-3 fs-14">Log In to create and see playlists.</div>
+            </div>
+
+            <div class="alert-btns d-flex justify-content-end">
+              <button
+                class="alert-btn alert-notNow-btn notNow-playlist text-white fs-14 fw-b mx-2"
+              >
+                Not Now
+              </button>
+              <button
+                class="btn alert-btn alert-logIn-btn logIn-playlist fs-14 mx-2"
+              >
+                Log In
+              </button>
+            </div>
+          </div>
+          <div
+            class="no-user-leftNavbar-alert-likedSongs hidden d-flex flex-column justify-content-between"
+          >
+            <div class="leftNavbar-alert-arrow">
+              <i class="bi bi-play-fill"></i>
+            </div>
+            <div>
+              <h5>Enjoy your Liked Songs</h5>
+              <div class="mt-3 fs-14">
+                Log In to see all the songs you like in one easy playlist.
+              </div>
+            </div>
+
+            <div class="alert-btns d-flex justify-content-end">
+              <button
+                class="alert-btn alert-notNow-btn notNow-likedSongs text-white fs-14 fw-b mx-2"
+              >
+                Not Now
+              </button>
+              <button
+                class="btn alert-btn alert-logIn-btn logIn-playlist fs-14 mx-2"
+              >
+                Log In
+              </button>
+            </div>
+          </div>
         </ul>
         <ul class="nav-extra py-2">
-          <a href="#"
-            ><li class="d-flex align-items-center px-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-plus-square-fill"
-                viewbox="0 0 16 16"
-              >
-                <path
-                  d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"
-                /></svg
-              ><span class="nav-page-text px-2">Create Playlist</span>
-            </li></a
-          >
+          <li class="d-flex align-items-center create-playlist px-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-plus-square-fill"
+              viewbox="0 0 16 16"
+            >
+              <path
+                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"
+              /></svg
+            ><span class="nav-page-text px-2">Create Playlist</span>
+          </li>
+
           <li class="d-flex align-items-center liked-songs px-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"

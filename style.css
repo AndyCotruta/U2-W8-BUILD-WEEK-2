@@ -1043,3 +1043,93 @@ input::placeholder {
 .logIn-btn-banner:hover {
   transform: scale(1.05);
 }
+
+.no-user-leftNavbar-alert {
+  position: absolute;
+  top: 145.45px;
+  left: 162.4px;
+  width: 330px;
+  height: 160px;
+  border-radius: 8px;
+  background-color: #0d72ea;
+  z-index: 1;
+  color: #f6f6f6;
+  padding: 16px;
+}
+
+.create-playlist {
+  cursor: pointer;
+}
+
+.create-playlist:hover {
+  color: white;
+}
+
+.no-user-leftNavbar-alert-playlist {
+  position: absolute;
+  top: 201.45px;
+  left: 183.45px;
+  width: 330px;
+  height: 160px;
+  border-radius: 8px;
+  background-color: #0d72ea;
+  z-index: 1;
+  color: #f6f6f6;
+  padding: 16px;
+}
+
+.no-user-leftNavbar-alert-likedSongs {
+  position: absolute;
+  top: 241.45px;
+  left: 168.45px;
+  width: 330px;
+  height: 160px;
+  border-radius: 8px;
+  background-color: #0d72ea;
+  z-index: 1;
+  color: #f6f6f6;
+  padding: 16px;
+}
+
+.alert-notNow-btn {
+  background: none;
+  border: none;
+}
+
+.alert-logIn-btn {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  height: 32px;
+  width: 72px;
+  border-radius: 16px;
+}
+
+.alert-btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.alert-btn:hover {
+  transform: scale(1.05);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.fs-14 {
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.fw-b {
+  font-weight: bold;
+}
+
+.leftNavbar-alert-arrow {
+  position: absolute;
+  top: 18px;
+  left: -11px;
+  color: #0d72ea;
+  transform: rotate(-0.5turn);
+}
