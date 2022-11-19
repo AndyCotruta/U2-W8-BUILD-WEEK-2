@@ -1019,3 +1019,27 @@ input::placeholder {
   align-items: center;
   color: white;
 }
+
+.logIn-banner {
+  background: rgb(174, 41, 150);
+  background: linear-gradient(
+    90deg,
+    rgba(174, 41, 150, 1) 0%,
+    rgba(81, 154, 244, 1) 100%
+  );
+}
+
+.logIn-btn-banner {
+  background-color: white;
+  color: black;
+  width: 120px;
+  height: 48px;
+  border-radius: 40px;
+  transition: all 0.2s ease-in-out;
+  align-self: center;
+  font-weight: bold;
+}
+
+.logIn-btn-banner:hover {
+  transform: scale(1.05);
+}

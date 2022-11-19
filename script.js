@@ -156,10 +156,6 @@ loginBtn.addEventListener("click", () => {
   window.location.assign("./login.html");
 });
 
-const loginFirstAlert = () => {
-  alert("Please Log In first to access this feature");
-};
-
 const yourLibrary = document.querySelector(".your-library");
 yourLibrary.addEventListener("click", () => {
   console.log("Your Library was clicked");
@@ -179,3 +175,15 @@ likedSongs.addEventListener("click", () => {
     alert("Please Log In first to access this feature");
   }
 });
+
+const nowPlayingBanner = document.querySelector(".now-playing");
+if (localStorage.getItem("username") == null) {
+  nowPlayingBanner.innerHTML = `
+  <div class = "logIn-banner w-100 d-flex justify-content-between px-3">
+    <div class="logIn-banner-text text-white d-flex flex-column justify-content-center px-3">
+      <div>PREVIEW OF SPOTIFY</div>
+      <div>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</div>
+  </div>
+  <button class="btn logIn-btn-banner">Log In</button>
+  </div>`;
+}
