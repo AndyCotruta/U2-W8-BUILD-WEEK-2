@@ -1027,6 +1027,10 @@ input::placeholder {
     rgba(174, 41, 150, 1) 0%,
     rgba(81, 154, 244, 1) 100%
   );
+  position: absolute;
+  bottom: 0;
+  height: 12vh;
+  z-index: 1;
 }
 
 .logIn-btn-banner {

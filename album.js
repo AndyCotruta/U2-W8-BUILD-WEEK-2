@@ -750,7 +750,30 @@ aHeart.addEventListener("click", () => {
   console.log("Your Library was clicked");
   console.log(localStorage.getItem("username"));
   if (localStorage.getItem("username") == null) {
-    alert("Please Log In first to access this feature");
+    const alertWindowLibrary = document.querySelector(
+      ".no-user-leftNavbar-alert"
+    );
+    alertWindowLibrary.classList.add("hidden");
+    const alertWindowLikedSongs = document.querySelector(
+      ".no-user-leftNavbar-alert-likedSongs"
+    );
+    alertWindowLikedSongs.classList.add("hidden");
+    const alertWindowPlaylist = document.querySelector(
+      ".no-user-leftNavbar-alert-playlist"
+    );
+    alertWindowPlaylist.classList.remove("hidden");
+    const notNowBtn = document.querySelector(".notNow-playlist");
+
+    notNowBtn.addEventListener("click", () => {
+      const alertWindowPlaylist = document.querySelector(
+        ".no-user-leftNavbar-alert-playlist"
+      );
+      alertWindowPlaylist.classList.add("hidden");
+    });
+    const logInBtn = document.querySelector(".logIn-playlist");
+    logInBtn.addEventListener("click", () => {
+      window.location.assign("./login.html");
+    });
   } else {
     const aHeart = document.querySelector(".a-heart");
     aHeart.classList.add("d-none");
@@ -764,15 +787,3 @@ aHeartColor.addEventListener("click", () => {
   aHeartColor.classList.add("d-none");
   aHeart.classList.remove("d-none");
 });
-
-const nowPlayingBanner = document.querySelector(".now-playing");
-if (localStorage.getItem("username") == null) {
-  nowPlayingBanner.innerHTML = `
-  <div class = "logIn-banner w-100 d-flex justify-content-between px-3">
-    <div class="logIn-banner-text text-white d-flex flex-column justify-content-center px-3">
-      <div>PREVIEW OF SPOTIFY</div>
-      <div>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</div>
-  </div>
-  <button class="btn logIn-btn-banner">Log In</button>
-  </div>`;
-}
