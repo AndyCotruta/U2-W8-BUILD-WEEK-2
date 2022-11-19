@@ -61,30 +61,28 @@
               ><span class="nav-page-text px-2">Search</span>
             </li></a
           >
-          <a href="YourLibrary.html"
-            ><li class="d-flex align-items-center px-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-music-note-list"
-                viewbox="0 0 16 16"
-              >
-                <path
-                  d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"
-                />
-                <path fill-rule="evenodd" d="M12 3v10h-1V3h1z" />
-                <path
-                  d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"
-                /></svg
-              ><span class="nav-page-text px-2">Your library</span>
-            </li></a
-          >
+          <li class="d-flex align-items-center your-library px-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-music-note-list"
+              viewbox="0 0 16 16"
+            >
+              <path
+                d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"
+              />
+              <path fill-rule="evenodd" d="M12 3v10h-1V3h1z" />
+              <path
+                d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"
+              /></svg
+            ><span class="nav-page-text px-2">Your library</span>
+          </li>
         </ul>
         <ul class="nav-extra py-2">
           <a href="#"
@@ -103,23 +101,21 @@
               ><span class="nav-page-text px-2">Create Playlist</span>
             </li></a
           >
-          <a href="#"
-            ><li class="d-flex align-items-center px-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-heart-fill"
-                viewbox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                /></svg
-              ><span class="nav-page-text px-2">Liked Songs</span>
-            </li></a
-          >
+          <li class="d-flex align-items-center liked-songs px-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-heart-fill"
+              viewbox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+              /></svg
+            ><span class="nav-page-text px-2">Liked Songs</span>
+          </li>
         </ul>
         <ul class="nav-playlist py-2">
           <li class="px-3">Random Song</li>
@@ -139,12 +135,10 @@
             <img class="img-btn" src="img/prev.svg" alt="" />
 
             <img class="img-btn" src="img/next.svg" alt="" />
-            <button class="btn_library" id="btnPlaylist">
-              Playlist
-            </button>
-            <button class="btn_library" id="btnPodcast" >Podcast</button>
-            <button class="btn_library" id="btnArtist">Artist</button>
-            <button class="btn_library" id="btnAlbums">Albums</button>
+            <p class="btn btn-library" id="btnPlaylist">Playlists</p>
+            <p class="btn btn-library" id="btnPodcast">Podcasts</p>
+            <p class="btn btn-library" id="btnArtist">Artists</p>
+            <p class="btn btn-library" id="btnAlbums">Albums</p>
           </div>
 
           <div class="user-name-div d-flex text-white">
@@ -177,12 +171,6 @@
           <h2 class="px-35" id="TitleLibrary">Playlist</h2>
           <div id="card-box" class="recently-played row mx-1"></div>
         </div>
-
-
-      
-
-        
-
       </div>
     </div>
 
