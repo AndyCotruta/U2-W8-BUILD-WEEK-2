@@ -1056,7 +1056,7 @@ input::placeholder {
   height: 160px;
   border-radius: 8px;
   background-color: #0d72ea;
-  z-index: 1;
+  z-index: 20;
   color: #f6f6f6;
   padding: 16px;
 }
@@ -1077,7 +1077,7 @@ input::placeholder {
   height: 160px;
   border-radius: 8px;
   background-color: #0d72ea;
-  z-index: 1;
+  z-index: 20;
   color: #f6f6f6;
   padding: 16px;
 }
@@ -1090,7 +1090,7 @@ input::placeholder {
   height: 160px;
   border-radius: 8px;
   background-color: #0d72ea;
-  z-index: 1;
+  z-index: 20;
   color: #f6f6f6;
   padding: 16px;
 }
@@ -1103,7 +1103,7 @@ input::placeholder {
   height: 84px;
   border-radius: 8px;
   background-color: #0d72ea;
-  z-index: 1;
+  z-index: 20;
   color: #f6f6f6;
   padding: 16px;
 }
