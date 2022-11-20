@@ -90,27 +90,22 @@ fetchAndCreateSearched = async () => {
   for (let i = 0; i < 12; i++) {
     const browseAllRow = document.querySelector(".browse-all");
     browseAllRow.innerHTML += `
-   <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
-   <div class="good-morning-cards card mb-3" onclick=goToAlbum('${String(
-     dataArray[i].album.id
-   )}')>
- <div class="row no-gutters">
-   <div class="col-md-4">
-     <img src=${dataArray[i].album.cover} alt="...">
-   </div>
-   <div class="good-morning-card-body col-md-8">
-     <div class="card-body">
-       <h5 class="card-title">${dataArray[i].album.title}</h5>
-     </div>
-   </div>
- </div>
-   <button class="green-player-btn-gm">
-                <svg id="gm-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+   <div class="col-sm-6 col-md-4 col-xl-2">
+    <div class="recently-played-cards card mb-3" onclick=goToAlbum('${String(
+      dataArray[i].album.id
+    )}')>
+  <img src=${dataArray[i].album.cover} class="card-img-top" alt="...">
+  <div class="recently-played-card-body card-body">
+     <p class="card-text p-cards-title">${dataArray[i].album.title}</p>
+    <p class="card-text">${dataArray[i].artist.name}</p>
+  </div>
+    <button class="green-player-btn-rp">
+                <svg id="rp-play" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
 </svg>
               </button>
 </div>
-   </div>
+    </div>
    `;
   }
 };
