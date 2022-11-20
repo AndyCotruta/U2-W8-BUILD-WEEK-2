@@ -2,8 +2,6 @@ window.onload = () => {
   getUser();
 };
 
-const likedSongsArray = [];
-
 const getUser = () => {
   const usernameText = document.querySelector(".user-name-text");
   const currentUser = localStorage.getItem("username");
@@ -149,6 +147,7 @@ function renderSongs(info) {
             element.artist.name
           }</p>
         </div>
+         <div class="li-animated hidden ml-3"><img src="https://open.spotifycdn.com/cdn/images/equaliser-animated-green.f93a2ef4.gif"></div>
         <audio src="${element.preview}" id="audio"></audio>
       </div>
   
@@ -156,7 +155,7 @@ function renderSongs(info) {
       <i class="bi bi-heart-fill fill-hearts hidden px-2"></i>
       <i class="bi bi-heart empty-hearts hidden px-2"></i>
         <p class="info-list-paragraph d-flex align-items-center px-2">${minutes}:${seconds1}${seconds2}</p>
-        <i class="bi bi-three-dots li-dots hidden px-2"></i>
+        <i class="bi bi-three-dots d-flex align-items-center hidden px-2"></i>
       </div>
     </div>
   </li>`;
@@ -169,6 +168,7 @@ function renderSongs(info) {
   const audioControlsArray = document.querySelectorAll(".li-audio-controls");
   const liPlayBtn = document.querySelectorAll(".li-pl-btn");
   const liPauseBtn = document.querySelectorAll(".li-pa-btn");
+  const liAnimated = document.querySelectorAll(".li-animated");
   const liHeart = document.querySelectorAll(".empty-hearts");
   const liFillHearts = document.querySelectorAll(".fill-hearts");
   const liDots = document.querySelectorAll(".bi-three-dots");
@@ -182,6 +182,7 @@ function renderSongs(info) {
     audioControlsArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     liHeart,
     liDots,
     liFillHearts
@@ -296,6 +297,7 @@ const playLiAudio = (
   audioControlsArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   liHeart,
   liDots,
   liFillHearts
@@ -307,6 +309,7 @@ const playLiAudio = (
       liArray,
       liPlayBtn,
       liPauseBtn,
+      liAnimated,
       titleArray,
       artistArray,
       songNumberArray
@@ -317,6 +320,7 @@ const playLiAudio = (
       liArray,
       liPlayBtn,
       liPauseBtn,
+      liAnimated,
       titleArray,
       artistArray,
       songNumberArray
@@ -331,6 +335,7 @@ const playLiAudio = (
       } else {
         liHeart[index].classList.remove("hidden");
         liDots[index + 1].classList.remove("hidden");
+        liPauseBtn[index].classList.remove("d-none");
       }
       for (let i = 0; i < liArray.length; i++) {
         if (i !== index) {
@@ -351,12 +356,7 @@ const playLiAudio = (
       });
     } else {
       liHeart[index].addEventListener("click", () => {
-        likedSongsArray.push(titleArray[index].innerText);
-        console.log(
-          `This is the song you have liked ${titleArray[index].innerText}`
-        );
-        console.log(likedSongsArray);
-        localStorage.setItem("likedSongs", likedSongsArray);
+        console.log("You can like this song");
         liFillHearts[index].classList.remove("hidden");
         liHeart[index].classList.add("d-none");
         liFillHearts[index].addEventListener("click", () => {
@@ -371,6 +371,10 @@ const playLiAudio = (
           li.classList.remove("clicked");
         });
 
+        liAnimated.forEach((li) => {
+          li.classList.add("hidden");
+        });
+
         liPauseBtn.forEach((btn) => {
           btn.classList.add("d-none");
         });
@@ -382,8 +386,9 @@ const playLiAudio = (
 
         liArray[index].classList.add("clicked");
         liPlayBtn[index].classList.add("d-none");
-        liPauseBtn[index].classList.remove("d-none");
-        liHeart[index].classList.add("hidden");
+        liAnimated[index].classList.remove("hidden");
+        // liPauseBtn[index].classList.remove("d-none");
+        // liHeart[index].classList.add("hidden");
         songNumberArray[index].classList.add("song-index-away");
 
         const playerSongTitle = document.querySelector(".song-title");
@@ -439,6 +444,7 @@ const playLiAudio = (
     liPauseBtn[index].addEventListener("click", () => {
       console.log("Audio Array for liPauseButton: " + audioArray);
       audioArray[index].pause();
+      liAnimated[index].classList.add("hidden");
       liPauseBtn[index].classList.add("d-none");
       liPlayBtn[index + 1].classList.remove("d-none");
       songNumberArray[index].classList.remove("song-index-away");
@@ -461,6 +467,7 @@ const playGlobal = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -479,7 +486,7 @@ const playGlobal = (
         currentIndex = 0;
       }
       audioArray[currentIndex].play();
-
+      liAnimated[currentIndex].classList.remove("hidden");
       liArray[currentIndex].classList.add("clicked");
       liPlayBtn[currentIndex].classList.add("d-none");
       liPauseBtn[currentIndex].classList.remove("d-none");
@@ -498,6 +505,7 @@ const playGlobal = (
     liArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     titleArray,
     artistArray,
     songNumberArray
@@ -521,6 +529,7 @@ const pauseGlobal = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -536,10 +545,11 @@ const pauseGlobal = (
     const nowPlayingPauseBtn = document.querySelector(".pa-btn");
     nowPlayingPauseBtn.classList.add("d-none");
     audioArray[index].pause();
+    liAnimated[index].classList.add("hidden");
     liPauseBtn[index].classList.add("d-none");
     songNumberArray[index].classList.remove("song-index-away");
-    liArray[index].classList.remove("clicked");
-    titleArray[index].classList.remove("green-text");
+    // liArray[index].classList.remove("clicked");
+    // titleArray[index].classList.remove("green-text");
   });
 };
 
@@ -549,6 +559,7 @@ const nowPlaying = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -569,6 +580,7 @@ const nowPlaying = (
     liArray[currentIndex].classList.add("clicked");
     liPlayBtn[currentIndex].classList.add("d-none");
     liPauseBtn[currentIndex].classList.remove("d-none");
+    liAnimated[currentIndex].classList.remove("hidden");
     songNumberArray[currentIndex].classList.add("song-index-away");
     const playerSongTitle = document.querySelector(".song-title");
     playerSongTitle.innerText = titleArray[currentIndex].innerText;
@@ -583,6 +595,7 @@ const nowPlaying = (
     liArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     titleArray,
     artistArray,
     songNumberArray
@@ -593,6 +606,7 @@ const nowPlaying = (
     liArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     titleArray,
     artistArray,
     songNumberArray
@@ -603,6 +617,7 @@ const nowPlaying = (
     liArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     titleArray,
     artistArray,
     songNumberArray
@@ -615,6 +630,7 @@ const nowPausing = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -630,9 +646,9 @@ const nowPausing = (
     globalPauseBtn.classList.add("d-none");
     audioArray[index].pause();
     liPauseBtn[index].classList.add("d-none");
+    liAnimated[index].classList.add("hidden");
     songNumberArray[index].classList.remove("song-index-away");
     liArray[index].classList.remove("clicked");
-    titleArray[index].classList.remove("green-text");
   });
 };
 
@@ -642,6 +658,7 @@ const skipLeft = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -657,7 +674,7 @@ const skipLeft = (
     liArray[newcurrentIndex].classList.add("clicked");
     liPlayBtn[newcurrentIndex].classList.add("d-none");
     liPauseBtn[newcurrentIndex].classList.remove("d-none");
-    songNumberArray[newcurrentIndex].classList.add("song-index-away");
+
     const playerSongTitle = document.querySelector(".song-title");
     playerSongTitle.innerText = titleArray[newcurrentIndex].innerText;
     const playerArtistName = document.querySelector(".song-artist");
@@ -682,12 +699,18 @@ const skipLeft = (
         btn.classList.add("d-none");
       });
       liPauseBtn[newcurrentIndex].classList.remove("d-none");
+      songNumberArray[newcurrentIndex].classList.add("d-none");
+      liAnimated.forEach((li) => {
+        li.classList.add("hidden");
+      });
+      liAnimated[newcurrentIndex].classList.remove("hidden");
 
       songNumberArray.forEach((songNumber) => {
         if (songNumber.classList.contains("song-index-away")) {
           songNumber.classList.remove("song-index-away");
         }
       });
+      songNumberArray[newcurrentIndex].classList.add("song-index-away");
     }
   });
 };
@@ -698,6 +721,7 @@ const skipRight = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -713,7 +737,8 @@ const skipRight = (
     liArray[newcurrentIndex].classList.add("clicked");
     liPlayBtn[newcurrentIndex].classList.add("d-none");
     liPauseBtn[newcurrentIndex].classList.remove("d-none");
-    songNumberArray[newcurrentIndex].classList.add("song-index-away");
+    liAnimated[newcurrentIndex].classList.remove("hidden");
+
     const playerSongTitle = document.querySelector(".song-title");
     playerSongTitle.innerText = titleArray[newcurrentIndex].innerText;
     const playerArtistName = document.querySelector(".song-artist");
@@ -738,12 +763,18 @@ const skipRight = (
         btn.classList.add("d-none");
       });
       liPauseBtn[newcurrentIndex].classList.remove("d-none");
+      songNumberArray[newcurrentIndex].classList.add("d-none");
+      liAnimated.forEach((li) => {
+        li.classList.add("hidden");
+      });
+      liAnimated[newcurrentIndex].classList.remove("hidden");
 
       songNumberArray.forEach((songNumber) => {
         if (songNumber.classList.contains("song-index-away")) {
           songNumber.classList.remove("song-index-away");
         }
       });
+      songNumberArray[newcurrentIndex].classList.add("song-index-away");
     }
   });
 };
@@ -921,9 +952,3 @@ closeAlertModalBtn.addEventListener("click", () => {
   const main = document.querySelector(".main");
   main.classList.remove("no-events");
 });
-
-console.log(localStorage);
-const storedLikedSongs = localStorage.getItem("likedSongs");
-console.log(storedLikedSongs);
-const arrayOfStoredLikedSongs = storedLikedSongs.split(",");
-console.log(arrayOfStoredLikedSongs);

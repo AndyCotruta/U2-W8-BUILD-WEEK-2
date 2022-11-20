@@ -94,6 +94,8 @@ function renderAlbum(data) {
           <p class="info-list-paragraph song-number">${i}</p>
               <i class="li-audio-controls d-none bi bi-play-fill li-pl-btn"></i>
               <i class="li-audio-controls d-none bi bi-pause-fill li-pa-btn"></i>
+              
+              
         </div>
        
         <div>
@@ -102,6 +104,7 @@ function renderAlbum(data) {
           </p>
           <p class="info-list-paragraph rendered-artist-name">${element.artist.name}</p>
         </div>
+        <div class="li-animated hidden ml-3"><img src="https://open.spotifycdn.com/cdn/images/equaliser-animated-green.f93a2ef4.gif"></div>
         <audio src="${element.preview}" id="audio"></audio>
       </div>
       <div class="d-flex">
@@ -121,6 +124,7 @@ function renderAlbum(data) {
   const audioControlsArray = document.querySelectorAll(".li-audio-controls");
   const liPlayBtn = document.querySelectorAll(".li-pl-btn");
   const liPauseBtn = document.querySelectorAll(".li-pa-btn");
+  const liAnimated = document.querySelectorAll(".li-animated");
   const liHeart = document.querySelectorAll(".empty-hearts");
   const liFillHearts = document.querySelectorAll(".fill-hearts");
   const liDots = document.querySelectorAll(".bi-three-dots");
@@ -134,6 +138,7 @@ function renderAlbum(data) {
     audioControlsArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     liHeart,
     liDots,
     liFillHearts
@@ -251,6 +256,7 @@ loginBtn.addEventListener("click", () => {
 });
 
 let currentIndex;
+let currentAnimationIndex;
 const playLiAudio = (
   audioArray,
   liArray,
@@ -260,6 +266,7 @@ const playLiAudio = (
   audioControlsArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   liHeart,
   liDots,
   liFillHearts
@@ -271,6 +278,7 @@ const playLiAudio = (
       liArray,
       liPlayBtn,
       liPauseBtn,
+      liAnimated,
       titleArray,
       artistArray,
       songNumberArray
@@ -281,25 +289,30 @@ const playLiAudio = (
       liArray,
       liPlayBtn,
       liPauseBtn,
+      liAnimated,
       titleArray,
       artistArray,
       songNumberArray
     );
     li.addEventListener("mouseover", () => {
       if (!liArray[index].classList.contains("clicked")) {
-        liArray[index].classList.add("white-background");
-        liPlayBtn[index].classList.remove("d-none");
-        liHeart[index].classList.remove("hidden");
-        liDots[index + 1].classList.remove("hidden");
-        songNumberArray[index].classList.add("d-none");
+        //if the song is not playing
+        liArray[index].classList.add("white-background"); // add the white background on nonPlaying Songs on mouseover
+        songNumberArray[index].classList.add("d-none"); // remove the numbers on nonPlaying Songs on mouseover and
+        liPlayBtn[index].classList.remove("d-none"); // display the playbutton on nonPlaying Songs on mouseover,
+        liHeart[index].classList.remove("hidden"); // also add the heart icon on nonPlaying Songs on mouseover
+        liDots[index + 1].classList.remove("hidden"); // add the dots icon on nonPlaying Songs on mouseover
       } else {
-        liHeart[index].classList.remove("hidden");
-        liDots[index + 1].classList.remove("hidden");
+        //if the song is playing
+        liHeart[index].classList.remove("hidden"); // display the heart icon on Playing Song on mouseover and
+        liDots[index + 1].classList.remove("hidden"); //display the dots icon on Playing Song on mouseover,
+        liPauseBtn[index].classList.remove("d-none"); //display the pause button on Playing Song on mouseover
       }
       for (let i = 0; i < liArray.length; i++) {
         if (i !== index) {
-          liArray[i].classList.remove("white-background");
-          liPlayBtn[i].classList.add("d-none");
+          //check if the current hovered index is the same as the playing index
+          liArray[i].classList.remove("white-background"); //remove the white background of the hovered index
+          liPlayBtn[i].classList.add("d-none"); //remove the play button of the
           liHeart[i].classList.add("hidden");
           liDots[i + 1].classList.add("hidden");
           songNumberArray[i].classList.remove("d-none");
@@ -331,6 +344,10 @@ const playLiAudio = (
           li.classList.remove("clicked");
         });
 
+        liAnimated.forEach((li) => {
+          li.classList.add("hidden");
+        });
+
         liPauseBtn.forEach((btn) => {
           btn.classList.add("d-none");
         });
@@ -342,7 +359,8 @@ const playLiAudio = (
 
         liArray[index].classList.add("clicked");
         liPlayBtn[index].classList.add("d-none");
-        liPauseBtn[index].classList.remove("d-none");
+        liAnimated[index].classList.remove("hidden");
+        // liPauseBtn[index].classList.remove("d-none");
         songNumberArray[index].classList.add("song-index-away");
 
         const playerSongTitle = document.querySelector(".song-title");
@@ -363,7 +381,7 @@ const playLiAudio = (
         }
 
         currentIndex = index;
-        console.log(currentIndex);
+        currentAnimationIndex = console.log(currentIndex);
         audioArray[index].play();
 
         const globalPlayBtn = document.querySelector(".global-play-btn");
@@ -389,6 +407,7 @@ const playLiAudio = (
     liPauseBtn[index].addEventListener("click", () => {
       console.log("Audio Array for liPauseButton: " + audioArray);
       audioArray[index].pause();
+      liAnimated[index].classList.add("hidden");
       liPauseBtn[index].classList.add("d-none");
       liPlayBtn[index + 1].classList.remove("d-none");
       songNumberArray[index].classList.remove("song-index-away");
@@ -411,6 +430,7 @@ const playGlobal = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -430,6 +450,7 @@ const playGlobal = (
         currentIndex = 0;
       }
       audioArray[currentIndex].play();
+      liAnimated[currentIndex].classList.remove("hidden");
       liArray[currentIndex].classList.add("clicked");
       liPlayBtn[currentIndex].classList.add("d-none");
       liPauseBtn[currentIndex].classList.remove("d-none");
@@ -449,6 +470,7 @@ const playGlobal = (
     liArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     titleArray,
     artistArray,
     songNumberArray
@@ -483,6 +505,7 @@ const pauseGlobal = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -498,10 +521,11 @@ const pauseGlobal = (
     const nowPlayingPauseBtn = document.querySelector(".pa-btn");
     nowPlayingPauseBtn.classList.add("d-none");
     audioArray[index].pause();
+    liAnimated[index].classList.add("hidden");
     liPauseBtn[index].classList.add("d-none");
     songNumberArray[index].classList.remove("song-index-away");
-    liArray[index].classList.remove("clicked");
-    titleArray[index].classList.remove("green-text");
+    // liArray[index].classList.remove("clicked");
+    // titleArray[index].classList.remove("green-text");
   });
 };
 
@@ -511,13 +535,13 @@ const nowPlaying = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
 ) => {
   const nowPlayingPlayBtn = document.querySelector(".pl-btn");
   nowPlayingPlayBtn.addEventListener("click", () => {
-    console.log(currentIndex);
     nowPlayingPlayBtn.classList.add("d-none");
     const nowPlayingPauseBtn = document.querySelector(".pa-btn");
     nowPlayingPauseBtn.classList.remove("d-none");
@@ -532,6 +556,7 @@ const nowPlaying = (
     liArray[currentIndex].classList.add("clicked");
     liPlayBtn[currentIndex].classList.add("d-none");
     liPauseBtn[currentIndex].classList.remove("d-none");
+    liAnimated[currentIndex].classList.remove("hidden");
     songNumberArray[currentIndex].classList.add("song-index-away");
     const playerSongTitle = document.querySelector(".song-title");
     playerSongTitle.innerText = titleArray[currentIndex].innerText;
@@ -546,6 +571,7 @@ const nowPlaying = (
     liArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     titleArray,
     artistArray,
     songNumberArray
@@ -556,6 +582,7 @@ const nowPlaying = (
     liArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     titleArray,
     artistArray,
     songNumberArray
@@ -566,6 +593,7 @@ const nowPlaying = (
     liArray,
     liPlayBtn,
     liPauseBtn,
+    liAnimated,
     titleArray,
     artistArray,
     songNumberArray
@@ -578,6 +606,7 @@ const nowPausing = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -593,9 +622,9 @@ const nowPausing = (
     globalPauseBtn.classList.add("d-none");
     audioArray[index].pause();
     liPauseBtn[index].classList.add("d-none");
+    liAnimated[index].classList.add("hidden");
     songNumberArray[index].classList.remove("song-index-away");
     liArray[index].classList.remove("clicked");
-    titleArray[index].classList.remove("green-text");
   });
 };
 
@@ -605,6 +634,7 @@ const skipLeft = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
@@ -620,7 +650,8 @@ const skipLeft = (
     liArray[newcurrentIndex].classList.add("clicked");
     liPlayBtn[newcurrentIndex].classList.add("d-none");
     liPauseBtn[newcurrentIndex].classList.remove("d-none");
-    songNumberArray[newcurrentIndex].classList.add("song-index-away");
+    liAnimated[newcurrentIndex].classList.remove("hidden");
+
     const playerSongTitle = document.querySelector(".song-title");
     playerSongTitle.innerText = titleArray[newcurrentIndex].innerText;
     const playerArtistName = document.querySelector(".song-artist");
@@ -645,12 +676,17 @@ const skipLeft = (
         btn.classList.add("d-none");
       });
       liPauseBtn[newcurrentIndex].classList.remove("d-none");
-
+      songNumberArray[newcurrentIndex].classList.add("d-none");
+      liAnimated.forEach((li) => {
+        li.classList.add("hidden");
+      });
+      liAnimated[newcurrentIndex].classList.remove("hidden");
       songNumberArray.forEach((songNumber) => {
         if (songNumber.classList.contains("song-index-away")) {
           songNumber.classList.remove("song-index-away");
         }
       });
+      songNumberArray[newcurrentIndex].classList.add("song-index-away");
     }
   });
 };
@@ -661,13 +697,13 @@ const skipRight = (
   liArray,
   liPlayBtn,
   liPauseBtn,
+  liAnimated,
   titleArray,
   artistArray,
   songNumberArray
 ) => {
   const nextSongBtn = document.querySelector(".skip-right-button");
   nextSongBtn.addEventListener("click", () => {
-    console.log("nextSongBtn clicked");
     newcurrentIndex = currentIndex + 1;
     for (let i = 0; i < audioArray.length; i++) {
       audioArray[i].pause();
@@ -676,7 +712,8 @@ const skipRight = (
     liArray[newcurrentIndex].classList.add("clicked");
     liPlayBtn[newcurrentIndex].classList.add("d-none");
     liPauseBtn[newcurrentIndex].classList.remove("d-none");
-    songNumberArray[newcurrentIndex].classList.add("song-index-away");
+    liAnimated[newcurrentIndex].classList.remove("hidden");
+
     const playerSongTitle = document.querySelector(".song-title");
     playerSongTitle.innerText = titleArray[newcurrentIndex].innerText;
     const playerArtistName = document.querySelector(".song-artist");
@@ -701,12 +738,17 @@ const skipRight = (
         btn.classList.add("d-none");
       });
       liPauseBtn[newcurrentIndex].classList.remove("d-none");
-
+      songNumberArray[newcurrentIndex].classList.add("d-none");
+      liAnimated.forEach((li) => {
+        li.classList.add("hidden");
+      });
+      liAnimated[newcurrentIndex].classList.remove("hidden");
       songNumberArray.forEach((songNumber) => {
         if (songNumber.classList.contains("song-index-away")) {
           songNumber.classList.remove("song-index-away");
         }
       });
+      songNumberArray[newcurrentIndex].classList.add("song-index-away");
     }
   });
 };
