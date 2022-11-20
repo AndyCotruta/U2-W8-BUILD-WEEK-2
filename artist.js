@@ -1,6 +1,24 @@
 window.onload = () => {
   getUser();
-  console.log(currentIndex);
+};
+
+const likedSongsArray = [];
+
+const getUser = () => {
+  const usernameText = document.querySelector(".user-name-text");
+  const currentUser = localStorage.getItem("username");
+  if (currentUser !== null) {
+    usernameText.innerText = currentUser;
+    const logInBanner = document.querySelector(".logIn-banner");
+    logInBanner.classList.add("hidden");
+  } else {
+    const userNameDiv = document.querySelector(".user-name-div");
+    userNameDiv.classList.add("hidden");
+    const navbarSignupBtn = document.querySelector(".navbar-signup-btn");
+    navbarSignupBtn.classList.remove("d-none");
+    const navbarLoginBtn = document.querySelector(".navbar-login-btn");
+    navbarLoginBtn.classList.remove("d-none");
+  }
 };
 
 let parameters = new URLSearchParams(document.location.search); //searching for params in the navbar
@@ -23,7 +41,6 @@ async function getData(search) {
     .then((response) => {
       let info = response;
       let chosenArtist = info.name;
-      console.log(chosenArtist);
       renderArtistName(info);
       getSongs(chosenArtist);
     })
@@ -49,8 +66,9 @@ function renderArtistName(info) {
               </div>
               <img class="artist-image d-none p-4" src="${info.picture_xl}">`;
   const image = document.querySelector(".artist-image");
-  console.log(image);
   renderGradient(image);
+  const src = image.getAttribute("src");
+  renderAlertModalImg(src);
 
   // ........................Large Picture Version above............................//
 
@@ -135,9 +153,10 @@ function renderSongs(info) {
       </div>
   
       <div class="d-flex">
-      <i class="bi bi-heart d-flex align-items-center hidden px-2"></i>
+      <i class="bi bi-heart-fill fill-hearts hidden px-2"></i>
+      <i class="bi bi-heart empty-hearts hidden px-2"></i>
         <p class="info-list-paragraph d-flex align-items-center px-2">${minutes}:${seconds1}${seconds2}</p>
-        <i class="bi bi-three-dots d-flex align-items-center hidden px-2"></i>
+        <i class="bi bi-three-dots li-dots hidden px-2"></i>
       </div>
     </div>
   </li>`;
@@ -150,7 +169,8 @@ function renderSongs(info) {
   const audioControlsArray = document.querySelectorAll(".li-audio-controls");
   const liPlayBtn = document.querySelectorAll(".li-pl-btn");
   const liPauseBtn = document.querySelectorAll(".li-pa-btn");
-  const liHeart = document.querySelectorAll(".bi-heart");
+  const liHeart = document.querySelectorAll(".empty-hearts");
+  const liFillHearts = document.querySelectorAll(".fill-hearts");
   const liDots = document.querySelectorAll(".bi-three-dots");
 
   playLiAudio(
@@ -163,7 +183,8 @@ function renderSongs(info) {
     liPlayBtn,
     liPauseBtn,
     liHeart,
-    liDots
+    liDots,
+    liFillHearts
   );
 }
 
@@ -213,27 +234,12 @@ const renderGradient = (image) => {
     const { R, G, B } = getColor(image, 4);
     const centerSection = document.querySelector(".center-section");
     centerSection.style.backgroundImage = `linear-gradient( 0deg, rgba(18, 18, 18, 1) 0%, rgba(${R}, ${G}, ${B}, 1) 100% )`;
+    const alertModal = document.querySelector(".alert-modal");
+    alertModal.style.backgroundImage = `linear-gradient( 0deg, rgba(18, 18, 18, 1) 0%, rgba(${R}, ${G}, ${B}, 1) 100% )`;
   };
 };
 
-const getUser = () => {
-  const usernameText = document.querySelector(".user-name-text");
-  const currentUser = localStorage.getItem("username");
-  console.log(currentUser);
-  if (currentUser !== null) {
-    usernameText.innerText = currentUser;
-  } else {
-    const userNameDiv = document.querySelector(".user-name-div");
-    userNameDiv.classList.add("hidden");
-    const navbarSignupBtn = document.querySelector(".navbar-signup-btn");
-    navbarSignupBtn.classList.remove("d-none");
-    const navbarLoginBtn = document.querySelector(".navbar-login-btn");
-    navbarLoginBtn.classList.remove("d-none");
-  }
-};
-
 const dropdownBtn = document.querySelector(".dropdownBtn");
-console.log(dropdownBtn);
 dropdownBtn.addEventListener("click", () => {
   const dropdownMenu = document.querySelector(".dropMenu");
   dropdownMenu.classList.toggle("d-none");
@@ -291,7 +297,8 @@ const playLiAudio = (
   liPlayBtn,
   liPauseBtn,
   liHeart,
-  liDots
+  liDots,
+  liFillHearts
 ) => {
   liArray.forEach((li, index) => {
     playGlobal(
@@ -318,70 +325,116 @@ const playLiAudio = (
       if (!liArray[index].classList.contains("clicked")) {
         liArray[index].classList.add("white-background");
         liPlayBtn[index].classList.remove("d-none");
-        liHeart[index + 1].classList.remove("hidden");
+        liHeart[index].classList.remove("hidden");
         liDots[index + 1].classList.remove("hidden");
         songNumberArray[index].classList.add("d-none");
-        for (let i = 0; i < liArray.length; i++) {
+      } else {
+        liHeart[index].classList.remove("hidden");
+        liDots[index + 1].classList.remove("hidden");
+      }
+      for (let i = 0; i < liArray.length; i++) {
+        if (i !== index) {
+          liArray[i].classList.remove("white-background");
+          liPlayBtn[i].classList.add("d-none");
+          liHeart[i].classList.add("hidden");
+          liDots[i + 1].classList.add("hidden");
+          songNumberArray[i].classList.remove("d-none");
+        }
+      }
+    });
+    if (localStorage.getItem("username") === null) {
+      liHeart[index].addEventListener("click", () => {
+        const noUserCenterNavbarAlert = document.querySelector(
+          ".no-user-centerNavbar-alert"
+        );
+        noUserCenterNavbarAlert.classList.remove("hidden");
+      });
+    } else {
+      liHeart[index].addEventListener("click", () => {
+        likedSongsArray.push(titleArray[index].innerText);
+        console.log(
+          `This is the song you have liked ${titleArray[index].innerText}`
+        );
+        console.log(likedSongsArray);
+        localStorage.setItem("likedSongs", likedSongsArray);
+        liFillHearts[index].classList.remove("hidden");
+        liHeart[index].classList.add("d-none");
+        liFillHearts[index].addEventListener("click", () => {
+          liFillHearts[index].classList.add("hidden");
+          liHeart[index].classList.remove("d-none");
+        });
+      });
+    }
+    if (localStorage.getItem("username") !== null) {
+      liPlayBtn[index].addEventListener("click", () => {
+        liArray.forEach((li) => {
+          li.classList.remove("clicked");
+        });
+
+        liPauseBtn.forEach((btn) => {
+          btn.classList.add("d-none");
+        });
+        songNumberArray.forEach((songNumber) => {
+          if (songNumber.classList.contains("song-index-away")) {
+            songNumber.classList.remove("song-index-away");
+          }
+        });
+
+        liArray[index].classList.add("clicked");
+        liPlayBtn[index].classList.add("d-none");
+        liPauseBtn[index].classList.remove("d-none");
+        liHeart[index].classList.add("hidden");
+        songNumberArray[index].classList.add("song-index-away");
+
+        const playerSongTitle = document.querySelector(".song-title");
+        playerSongTitle.innerText = titleArray[index].innerText;
+
+        const playerArtistName = document.querySelector(".song-artist");
+        playerArtistName.innerText = artistArray[index].innerText;
+        liArray[index].classList.add("white-background-all");
+        titleArray[index].classList.add("green-text");
+        artistArray[index].classList.add("white-text");
+        for (let i = 0; i < audioArray.length; i++) {
+          audioArray[i].pause();
           if (i !== index) {
-            liArray[i].classList.remove("white-background");
-            liPlayBtn[i].classList.add("d-none");
-            liHeart[i + 1].classList.add("hidden");
-            liDots[i + 1].classList.add("hidden");
-            songNumberArray[i].classList.remove("d-none");
+            liArray[i].classList.remove("white-background-all");
+            titleArray[i].classList.remove("green-text");
+            artistArray[i].classList.remove("white-text");
           }
         }
-      }
-    });
+        currentIndex = index;
+        console.log(currentIndex);
+        currentAudioArray = audioArray;
+        audioArray[index].play();
+        const globalPlayBtn = document.querySelector(".global-play-btn");
+        globalPlayBtn.classList.add("d-none");
+        const globalPauseBtn = document.querySelector(".global-pause-btn");
+        globalPauseBtn.classList.remove("d-none");
 
-    liPlayBtn[index].addEventListener("click", () => {
-      liArray.forEach((li) => {
-        li.classList.remove("clicked");
+        const nowPlayingPlayBtn = document.querySelector(".pl-btn");
+        nowPlayingPlayBtn.classList.add("d-none");
+        const nowPlayingPauseBtn = document.querySelector(".pa-btn");
+        nowPlayingPauseBtn.classList.remove("d-none");
       });
-
-      liPauseBtn.forEach((btn) => {
-        btn.classList.add("d-none");
+    } else {
+      liPlayBtn[index].addEventListener("click", () => {
+        console.log("Li Play Button was clicked");
+        const alertModal = document.querySelector(".alert-modal");
+        alertModal.classList.remove("hidden");
+        const main = document.querySelector(".main");
+        main.classList.add("no-events");
       });
-      songNumberArray.forEach((songNumber) => {
-        if (songNumber.classList.contains("song-index-away")) {
-          songNumber.classList.remove("song-index-away");
-        }
+      const centerNavbarAlertCloseBtn = document.querySelector(
+        ".centerNavbar-alert-closeBtn"
+      );
+      centerNavbarAlertCloseBtn.addEventListener("click", () => {
+        console.log("Please check");
+        const noUserCenterNavbarAlert = document.querySelector(
+          ".no-user-centerNavbar-alert"
+        );
+        noUserCenterNavbarAlert.classList.add("hidden");
       });
-
-      liArray[index].classList.add("clicked");
-      liPlayBtn[index].classList.add("d-none");
-      liPauseBtn[index].classList.remove("d-none");
-      songNumberArray[index].classList.add("song-index-away");
-
-      const playerSongTitle = document.querySelector(".song-title");
-      playerSongTitle.innerText = titleArray[index].innerText;
-
-      const playerArtistName = document.querySelector(".song-artist");
-      playerArtistName.innerText = artistArray[index].innerText;
-      liArray[index].classList.add("white-background-all");
-      titleArray[index].classList.add("green-text");
-      artistArray[index].classList.add("white-text");
-      for (let i = 0; i < audioArray.length; i++) {
-        audioArray[i].pause();
-        if (i !== index) {
-          liArray[i].classList.remove("white-background-all");
-          titleArray[i].classList.remove("green-text");
-          artistArray[i].classList.remove("white-text");
-        }
-      }
-      currentIndex = index;
-      console.log(currentIndex);
-      currentAudioArray = audioArray;
-      audioArray[index].play();
-      const globalPlayBtn = document.querySelector(".global-play-btn");
-      globalPlayBtn.classList.add("d-none");
-      const globalPauseBtn = document.querySelector(".global-pause-btn");
-      globalPauseBtn.classList.remove("d-none");
-
-      const nowPlayingPlayBtn = document.querySelector(".pl-btn");
-      nowPlayingPlayBtn.classList.add("d-none");
-      const nowPlayingPauseBtn = document.querySelector(".pa-btn");
-      nowPlayingPauseBtn.classList.remove("d-none");
-    });
+    }
 
     liPauseBtn[index].addEventListener("click", () => {
       console.log("Audio Array for liPauseButton: " + audioArray);
@@ -412,31 +465,33 @@ const playGlobal = (
   artistArray,
   songNumberArray
 ) => {
-  const globalPlayBtn = document.querySelector(".global-play-btn");
-  globalPlayBtn.addEventListener("click", () => {
-    globalPlayBtn.classList.add("d-none");
-    const globalPauseBtn = document.querySelector(".global-pause-btn");
-    globalPauseBtn.classList.remove("d-none");
-    const nowPlayingPlayBtn = document.querySelector(".pl-btn");
-    nowPlayingPlayBtn.classList.add("d-none");
-    const nowPlayingPauseBtn = document.querySelector(".pa-btn");
-    nowPlayingPauseBtn.classList.remove("d-none");
-    if (currentIndex === undefined) {
-      currentIndex = 0;
-    }
-    audioArray[currentIndex].play();
+  if (localStorage.getItem("username") !== null) {
+    const globalPlayBtn = document.querySelector(".global-play-btn");
+    globalPlayBtn.addEventListener("click", () => {
+      globalPlayBtn.classList.add("d-none");
+      const globalPauseBtn = document.querySelector(".global-pause-btn");
+      globalPauseBtn.classList.remove("d-none");
+      const nowPlayingPlayBtn = document.querySelector(".pl-btn");
+      nowPlayingPlayBtn.classList.add("d-none");
+      const nowPlayingPauseBtn = document.querySelector(".pa-btn");
+      nowPlayingPauseBtn.classList.remove("d-none");
+      if (currentIndex === undefined) {
+        currentIndex = 0;
+      }
+      audioArray[currentIndex].play();
 
-    liArray[currentIndex].classList.add("clicked");
-    liPlayBtn[currentIndex].classList.add("d-none");
-    liPauseBtn[currentIndex].classList.remove("d-none");
-    songNumberArray[currentIndex].classList.add("song-index-away");
-    const playerSongTitle = document.querySelector(".song-title");
-    playerSongTitle.innerText = titleArray[currentIndex].innerText;
-    const playerArtistName = document.querySelector(".song-artist");
-    playerArtistName.innerText = artistArray[currentIndex].innerText;
-    titleArray[currentIndex].classList.add("green-text");
-    liArray[currentIndex].classList.add("white-background-all");
-  });
+      liArray[currentIndex].classList.add("clicked");
+      liPlayBtn[currentIndex].classList.add("d-none");
+      liPauseBtn[currentIndex].classList.remove("d-none");
+      songNumberArray[currentIndex].classList.add("song-index-away");
+      const playerSongTitle = document.querySelector(".song-title");
+      playerSongTitle.innerText = titleArray[currentIndex].innerText;
+      const playerArtistName = document.querySelector(".song-artist");
+      playerArtistName.innerText = artistArray[currentIndex].innerText;
+      titleArray[currentIndex].classList.add("green-text");
+      liArray[currentIndex].classList.add("white-background-all");
+    });
+  }
   pauseGlobal(
     audioArray,
     index,
@@ -448,6 +503,17 @@ const playGlobal = (
     songNumberArray
   );
 };
+
+const globalPlayBtn = document.querySelector(".global-play-btn");
+if (localStorage.getItem("username") == null) {
+  globalPlayBtn.addEventListener("click", () => {
+    console.log("Please Log In to Play");
+    const alertModal = document.querySelector(".alert-modal");
+    alertModal.classList.remove("hidden");
+    const main = document.querySelector(".main");
+    main.classList.add("no-events");
+  });
+}
 
 const pauseGlobal = (
   audioArray,
@@ -789,7 +855,30 @@ aHeart.addEventListener("click", () => {
   console.log("Your Library was clicked");
   console.log(localStorage.getItem("username"));
   if (localStorage.getItem("username") == null) {
-    alert("Please Log In first to access this feature");
+    const alertWindowLibrary = document.querySelector(
+      ".no-user-leftNavbar-alert"
+    );
+    alertWindowLibrary.classList.add("hidden");
+    const alertWindowLikedSongs = document.querySelector(
+      ".no-user-leftNavbar-alert-likedSongs"
+    );
+    alertWindowLikedSongs.classList.add("hidden");
+    const alertWindowPlaylist = document.querySelector(
+      ".no-user-leftNavbar-alert-playlist"
+    );
+    alertWindowPlaylist.classList.remove("hidden");
+    const notNowBtn = document.querySelector(".notNow-playlist");
+
+    notNowBtn.addEventListener("click", () => {
+      const alertWindowPlaylist = document.querySelector(
+        ".no-user-leftNavbar-alert-playlist"
+      );
+      alertWindowPlaylist.classList.add("hidden");
+    });
+    const logInBtn = document.querySelector(".logIn-playlist");
+    logInBtn.addEventListener("click", () => {
+      window.location.assign("./login.html");
+    });
   } else {
     const aHeart = document.querySelector(".a-heart");
     aHeart.classList.add("d-none");
@@ -806,7 +895,7 @@ aHeartColor.addEventListener("click", () => {
 
 const nowPlayingBanner = document.querySelector(".now-playing");
 if (localStorage.getItem("username") == null) {
-  nowPlayingBanner.innerHTML = `
+  nowPlayingBanner.innerHTML += `
   <div class = "logIn-banner w-100 d-flex justify-content-between px-3">
     <div class="logIn-banner-text text-white d-flex flex-column justify-content-center px-3">
       <div>PREVIEW OF SPOTIFY</div>
@@ -815,3 +904,26 @@ if (localStorage.getItem("username") == null) {
   <button class="btn logIn-btn-banner">Log In</button>
   </div>`;
 }
+
+const renderAlertModalImg = (src) => {
+  const alertModalImg = document.querySelector(".alert-modal-img");
+  alertModalImg.innerHTML = `
+                         
+                            <img class="alert-img" src="${src}">
+                       
+  `;
+};
+
+const closeAlertModalBtn = document.querySelector(".alert-modal-close-btn");
+closeAlertModalBtn.addEventListener("click", () => {
+  const alertModal = document.querySelector(".alert-modal");
+  alertModal.classList.add("hidden");
+  const main = document.querySelector(".main");
+  main.classList.remove("no-events");
+});
+
+console.log(localStorage);
+const storedLikedSongs = localStorage.getItem("likedSongs");
+console.log(storedLikedSongs);
+const arrayOfStoredLikedSongs = storedLikedSongs.split(",");
+console.log(arrayOfStoredLikedSongs);
