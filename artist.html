@@ -19,6 +19,27 @@
     <title>Document</title>
   </head>
   <body>
+    <div class="alert-modal hidden d-flex">
+      <div class="alert-modal-img">
+        <img src="${src}" />
+      </div>
+      <div class="alert-modal-text">
+        <h2>Start listening with a Free Spotify account</h2>
+        <a href="./login.html"
+          ><button class="alert-modal-SignUp-btn">SIGN UP FREE</button></a
+        >
+        <a href="https://www.spotify.com/download/mac/?referrer=dwp"
+          ><button class="alert-modal-download-btn">DOWNLOAD APP</button></a
+        >
+        <div>
+          <span class="already">Already have an account?</span
+          ><a class="alert-modal-login" href="./login.html"
+            ><span class="mx-2">Log In</span></a
+          >
+        </div>
+      </div>
+      <button class="alert-modal-close-btn">Close</button>
+    </div>
     <div class="main d-flex">
       <div class="left-nav">
         <div class="logo px-3">
@@ -209,6 +230,18 @@
         <div class="scroll-bar">
           <!-- DIV TO KEEP THE BACKGROUND IMAGE -->
           <div id="background">
+            <div class="no-user-centerNavbar-alert hidden">
+              <div id="closeBtn" class="centerNavbar-alert-closeBtn">
+                <i class="bi bi-plus-lg"></i>
+              </div>
+              <div class="centerNavbar-alert-arrow">
+                <i class="bi bi-play-fill"></i>
+              </div>
+              <div class="h-100 d-flex flex-column justify-content-between">
+                <h5>You're logged out</h5>
+                <div class="fs-10">Log In to add this to your Liked Songs.</div>
+              </div>
+            </div>
             <!-- NAVBAR -->
             <div class="center-nav-bar px-35 py-2">
               <div class="btns-prev-next">
@@ -312,7 +345,18 @@
         </div>
       </div>
     </div>
-
+    <!-- <div class="logIn-banner w-100 d-flex justify-content-between px-3">
+      <div
+        class="logIn-banner-text text-white d-flex flex-column justify-content-center px-3"
+      >
+        <div>PREVIEW OF SPOTIFY</div>
+        <div>
+          Sign up to get unlimited songs and podcasts with occasional ads. No
+          credit card needed.
+        </div>
+      </div>
+      <button class="btn logIn-btn-banner">Log In</button>
+    </div> -->
     <div class="wrapper1">
       <div class="wrapper2">
         <div class="now-playing">

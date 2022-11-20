@@ -1095,6 +1095,45 @@ input::placeholder {
   padding: 16px;
 }
 
+.no-user-centerNavbar-alert {
+  position: absolute;
+  top: 56px;
+  right: 16px;
+  width: 330px;
+  height: 84px;
+  border-radius: 8px;
+  background-color: #0d72ea;
+  z-index: 1;
+  color: #f6f6f6;
+  padding: 16px;
+}
+
+.fs-10 {
+  font-size: 0.875rem;
+}
+
+.centerNavbar-alert-closeBtn {
+  position: absolute;
+  top: 0;
+  right: 9px;
+  font-size: 32px;
+  transform: rotate(-0.125turn);
+  transition: transform 0.2s ease-in-out;
+}
+
+.centerNavbar-alert-closeBtn:hover {
+  transform: rotate(-0.125turn) scale(1.1);
+  cursor: pointer;
+}
+
+.centerNavbar-alert-arrow {
+  position: absolute;
+  top: -15px;
+  right: 46px;
+  color: #0d72ea;
+  transform: rotate(-0.25turn);
+}
+
 .alert-notNow-btn {
   background: none;
   border: none;
@@ -1136,4 +1175,130 @@ input::placeholder {
   left: -11px;
   color: #0d72ea;
   transform: rotate(-0.5turn);
+}
+
+.alert-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 64%;
+  width: 820px;
+  padding: 64px;
+  box-shadow: 0px 0px 0px 500px #000000e0;
+  z-index: 100;
+}
+
+/* .alert-modal-img {
+  width: 50%;
+} */
+
+.alert-img {
+  width: 300px;
+  height: 100%;
+  object-fit: cover;
+  margin-right: 64px;
+}
+
+.alert-modal-text {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.alert-modal-SignUp-btn {
+  background-color: #1ed760;
+  font-weight: bold;
+  height: 48px;
+  width: 168px;
+  border: none;
+  border-radius: 24px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.alert-modal-SignUp-btn:hover {
+  background-color: #1fdf64;
+  transform: scale(1.05);
+}
+
+.alert-modal-download-btn {
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  height: 48px;
+  width: 196px;
+  border: 1px solid lightgray;
+  border-radius: 24px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.alert-modal-download-btn:hover {
+  transform: scale(1.05);
+}
+
+.already {
+  color: lightgray;
+}
+
+.alert-modal-login {
+  color: white;
+}
+
+.alert-modal-login:hover {
+  color: white;
+}
+
+.alert-modal-close-btn {
+  position: absolute;
+  top: 105%;
+  left: 50%;
+  transform: translate(-105%, -50%);
+  z-index: 2;
+  background-color: transparent;
+  border: none;
+  color: lightgray;
+}
+
+.alert-modal-close-btn:hover {
+  color: white;
+}
+
+.darken {
+  filter: brightness(0.5);
+}
+
+.no-events {
+  pointer-events: none;
+}
+
+.empty-hearts {
+  align-self: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.fill-hearts {
+  align-self: center;
+  color: #1cdf63;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.li-dots {
+  align-self: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.li-dots:hover {
+  transform: scale(1.2);
+}
+
+.empty-hearts:hover,
+.fill-hearts:hover {
+  transform: scale(1.1);
 }
