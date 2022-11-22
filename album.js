@@ -22,6 +22,7 @@ async function getData(albumId) {
     .then(async (response) => await response.json())
     .then((response) => {
       const data = response;
+      console.log(data);
       console.log(data.tracks.data[0].artist.name);
       // console.log(data.tracks.data);
       renderAlbum(data);
@@ -100,7 +101,7 @@ function renderAlbum(data) {
        
         <div>
           <p class="info-title-paragraph rendered-song-title">
-            <strong>${element.title}</strong>
+            <strong>${element.title}<span class="songId hidden">${element.id}<span/></strong>
           </p>
           <p class="info-list-paragraph rendered-artist-name">${element.artist.name}</p>
         </div>
@@ -128,8 +129,10 @@ function renderAlbum(data) {
   const liHeart = document.querySelectorAll(".empty-hearts");
   const liFillHearts = document.querySelectorAll(".fill-hearts");
   const liDots = document.querySelectorAll(".bi-three-dots");
+  const idArray = document.querySelectorAll(".songId");
 
   playLiAudio(
+    idArray,
     audioArray,
     liArray,
     titleArray,
@@ -258,6 +261,7 @@ loginBtn.addEventListener("click", () => {
 let currentIndex;
 let currentAnimationIndex;
 const playLiAudio = (
+  idArray,
   audioArray,
   liArray,
   titleArray,
@@ -273,6 +277,7 @@ const playLiAudio = (
 ) => {
   liArray.forEach((li, index) => {
     playGlobal(
+      idArray,
       audioArray,
       index,
       liArray,
@@ -284,6 +289,7 @@ const playLiAudio = (
       songNumberArray
     );
     nowPlaying(
+      idArray,
       audioArray,
       index,
       liArray,
@@ -330,6 +336,10 @@ const playLiAudio = (
     } else {
       liHeart[index].addEventListener("click", () => {
         console.log("You can like this song");
+        console.log(
+          `This song was added to liked: ${titleArray[index].innerText}`
+        );
+        console.log(idArray[index]);
         liFillHearts[index].classList.remove("hidden");
         liHeart[index].classList.add("d-none");
         liFillHearts[index].addEventListener("click", () => {
